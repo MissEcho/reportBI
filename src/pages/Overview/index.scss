@@ -1,0 +1,50 @@
+.overview {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  .top {
+    padding: 0 5px;
+    display: flex;
+    flex: 5;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .graph {
+    position: relative;
+
+    .legend {
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
+      font-size: 12px;
+      text-align: left;
+
+      span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+      }
+
+      .abnormal {
+        span {
+          background-color: #FF0000;
+        }
+      }
+
+      .warning {
+        span {
+          background-color: #FFCC00;
+        }
+      }
+      .normal {
+        span {
+          background-color: #188A4F;
+        }
+      }
+    }
+  }
+}
