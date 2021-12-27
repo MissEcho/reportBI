@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import styles from './index.scss';
 
 const Box = memo(props => {
-  const { titleClass, legends, select, contentClass, title, children } = props;
+  const { titleClass, select, contentClass, title, children } = props;
   const getSelect = (val, event) => {
     console.log(val, event)
   }
@@ -11,10 +11,10 @@ const Box = memo(props => {
       <div className={styles.head}>
         <div className={`${styles.title} ${titleClass}`}>{title}</div>
         {select ? <select value="area" className={styles.select} onChange={e => { console.log(e.target) }}>
-          <option value='cage'>品类</option>
-          <option value='area'>区域</option>
-          <option value='city'>分公司</option>
-          <option value='customer'>客户组</option>
+          <option value='cage'>品类维度</option>
+          <option value='area'>区域维度</option>
+          <option value='city'>分公司维度</option>
+          <option value='customer'>核心客户</option>
         </select> : null}
       </div>
       <div className={`${styles.content} ${contentClass}`}>

@@ -7,8 +7,8 @@ import Node from '@/components/Node';
 import styles from './index.scss';
 
 const Overview = memo(() => {
-    const [sum1, setSum1] = useState(3456);
-    const [sum2, setSum2] = useState(456);
+    const [sum1, setSum1] = useState(700);
+    const [sum2, setSum2] = useState(700);
     const [sum3, setSum3] = useState(700);
     const [sum4, setSum4] = useState(3456);
     const [sum5, setSum5] = useState(33.45);
@@ -39,7 +39,7 @@ const Overview = memo(() => {
                     <p>总执行单量</p>
                 </div>
                 <div>
-                    <ScrollNum numbers={sum2} style={{ color: '#FF0000' }} />
+                    <ScrollNum numbers={sum2} style={{ color: '#ff0000' }} />
                     <p>异常单量</p>
                 </div>
                 <div>
@@ -47,7 +47,7 @@ const Overview = memo(() => {
                     <p>告警单量</p>
                 </div>
                 <div>
-                    <ScrollNum numbers={sum4} style={{ color: '#188A4F' }} />
+                    <ScrollNum numbers={sum4} style={{ color: '#00FF00' }} />
                     <p>正常单量</p>
                 </div>
                 <div>
