@@ -41,19 +41,49 @@ const columns = [
     table,
 }))
 export default class index extends PureComponent {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         business: [],
-    //     };
-    // }
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectVal: 'area',
+            business: [],
+            effectiveness: {}
+        };
+    }
+    static getDerivedStateFromProps(props, state) {
+        const {
+            table: { effectiveness },
+        } = props;
+        let { business, selectVal } = state;
+        if (Object.keys(effectiveness).length !== 0) {
+            let listData = effectiveness[selectVal];
+            return {
+                business: [
+                    ...listData,
+                ],
+                effectiveness
+            };
+        }
+        return null;
+    }
+    getSelect = (val) => {
+        let { effectiveness } = this.state;
+        this.setState({
+            selectVal: val,
+            business: [...effectiveness[val]]
+        })
+    }
+    getRow = (row) => {
+        location.reload();
+    }
     render() {
-        const { table } = this.props;
-        // const { business } = this.state;
-        let business = table.office;
+        const { business } = this.state;
         return (
-            <Box title="供应链中心交付时效" select={true}>
+            <Box title="供应链中心交付时效" contentClass={'tableHeight'} select={<select value={this.state.selectVal} className={styles.select} onChange={e => { this.getSelect(e.target.value) }}>
+                <option value='category'>品类维度</option>
+                <option value='area'>区域维度</option>
+                <option value='office'>分公司维度</option>
+                <option value='customer'>核心客户</option>
+            </select>}>
                 <table className={styles.tableBox}>
                     <thead className={styles.tableHead}>
                         <tr>
@@ -67,21 +97,21 @@ export default class index extends PureComponent {
                     <tbody className={styles.tableBody}>
                         {business.slice(0, 12).map((e, i) => (
                             <tr
+                                onClick={() => { this.getRow(e) }}
                                 key={e.ranking + Math.random()}
                                 className={`${animate.animated} ${i === 0 ? animate.fadeInRight : animate.slideInDown
                                     }`}
                             >
                                 <td>{e.ranking}</td>
-                                <td>{e.classify}</td>
+                                <td>{e.kpi}</td>
                                 <td>{e.month}</td>
-                                <td>{e.growth}</td>
+                                <td style={{ color: e.growth > 0 ? '#ff0000' : '#00FF00' }}>{e.growth}</td>
                                 <td>{e.aveYear}</td>
                                 <td>{e.target}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <p style={{ height: "15px" }}></p>
             </Box>
         );
     }

@@ -6,30 +6,66 @@
   align-items: center;
   background: url('../../assets/imgs/header.png') no-repeat center center;
   background-size: contain;
+
   .time {
     position: absolute;
     left: 20px;
     top: 50%;
     font-size: 26px;
     transform: translateY(-50%);
+
     .timeIcon {
       margin-right: 8px;
       color: #0bbcfa;
     }
   }
+
   .title {
     font-size: 34px;
     margin-bottom: 8px;
     background: url('../../assets/imgs/line2.png') no-repeat bottom center;
   }
+
   .desc {
     position: absolute;
-    right: 20px;
+    right: 2px;
     top: 50%;
     color: #77fbe3;
     transform: translateY(-50%);
+    user-select: none;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    .online {
+      width: 100px;
+      height: 30px;
+      transition: .2s ease-out;
+      background: url('../../assets/imgs/online.png') no-repeat right center;
+      background-size: contain;
+    }
+
+    .outline {
+      width: 100px;
+      height: 30px;
+      transition: .2s ease-out;
+      background: url('../../assets/imgs/outline.png') no-repeat right center;
+      background-size: contain;
+    }
+
     .setIcon {
       margin-right: 8px;
+      font-size: 80px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .close {
+      color: #8f8f8f;
+    }
+
+    .open {
+      color: #00ff00;
     }
   }
 }

@@ -42,17 +42,53 @@ const columns = [
     table,
 }))
 export default class index extends PureComponent {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         business: [],
-    //     };
-    // }
+    constructor(props) {
+        super(props);
+        this.state = {
+            business: [],
+        };
+    }
+    static getDerivedStateFromProps(props, state) {
+        const {
+            table: { abnormal },
+        } = props;
+        let { business } = state;
+        if (abnormal.length !== 0) {
+            if (business.length > 7) {
+                business = business.slice(0, 7);
+            }
+            return {
+                business: [
+                    ...abnormal,
+                    ...business,
+                ],
+            };
+        }
+        return null;
+    }
+    componentDidMount() {
+        // 等运行之后从table里面去取值
+        const {
+            table: { abnormal },
+        } = this.props;
+        const { business } = this.state;
+        const t = setInterval(() => {
+            this.getNum() > 5 ?
+                this.setState({
+                    business: [
+                        ...abnormal,
+                        ...business,
+                    ]
+                }) : null
+        }, 10000);
+        return () => { clearInterval(t) }
+    }
+    getNum = () => {
+        return Math.floor(Math.random() * 10);
+    }
 
     render() {
-        const { table } = this.props;
-        // const { business } = this.state;
-        let business = table.abnormal;
+        const { business } = this.state;
         return (
             <Box title="异常订单滚动播报">
                 <table className={styles.tableBox}>
@@ -86,4 +122,5 @@ export default class index extends PureComponent {
             </Box>
         );
     }
+
 }

@@ -113,7 +113,6 @@ export default function () {
       let line1, line2, line3;
       if (cfg.calc) {
         let _p = getPointByLine(startPoint, endPoint, percent);
-        debugger;
         if (_p && _p.length == 4) {
           line1 = group.addShape('path', {
             attrs: {

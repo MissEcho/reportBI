@@ -22,45 +22,20 @@
       // border-bottom: 1px solid rgba(83, 179, 228, 0.3);
     }
 
-    &>tr>th {
-      &:nth-child(1) {
-        color: #9966FF;
-      }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
-
-      &:nth-child(4) {
-        color: #FFFF00;
-      }
-
-      &:nth-child(5) {
-        color: #00FF00;
-      }
-    }
   }
 
   .tableBody {
     font-size: 12px;
 
-    &>tr>td {
-      &:nth-child(1) {
-        color: #9966FF;
+    &>tr {
+      cursor: pointer;
+      &:hover {
+        background-color: #190c51
       }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
-
-      &:nth-child(4) {
-        color: #FFFF00;
-      }
-
-      &:nth-child(5) {
-        color: #00FF00;
+      &.on {
+        background-color: #190c51
       }
     }
 
@@ -77,4 +52,16 @@
       }
     }
   }
+}
+
+.select {
+  color: #ffffff;
+  width: 150px;
+  height: 30px;
+  border-radius: 2px;
+  padding-left: 5px;
+  margin-right: 0px;
+  border: 1px solid #1346b9;
+  background-color: #040b31;
+  outline: none;
 }
