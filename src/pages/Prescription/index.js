@@ -36,18 +36,21 @@ const columns = [
         width: 60,
     },
 ];
-
+let timer = null;
+const pageSize = 13;
+let page = 1;
 @connect(({ table }) => ({
     table,
 }))
+
 export default class index extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             selectVal: 'area',
             business: [],
-            endNum:7,
-            effectiveness: {}
+            endNum: 7,
+            effectiveness: {},
         };
     }
     static getDerivedStateFromProps(props, state) {
@@ -61,26 +64,52 @@ export default class index extends PureComponent {
             return {
                 business: [
                     ...listData,
-                    ...business,
                 ],
                 effectiveness
             };
         }
         return null;
     }
-
+    setTimer = (len) => {
+        if (timer) {
+            // 先清空
+            clearInterval(timer);
+        }
+        timer = setInterval(() => {
+            // 计算大小即可;
+            if (page * pageSize > len) {
+                page = 1;
+            } else {
+                page++
+            }
+            this.forceUpdate();
+        }, 5000);
+    }
     getSelect = (val) => {
         let { effectiveness } = this.state;
+        if (timer) {
+            clearInterval(timer);
+        }
+        let len = effectiveness[val].length;
+        page = 1;
+        if (len > pageSize) {
+            this.setTimer(len);
+        }
         this.setState({
             selectVal: val,
             business: [...effectiveness[val]]
         })
     }
-    getRow = (row) => {
+    getRow = () => {
         location.reload();
     }
     render() {
         const { business } = this.state;
+        let start = (page - 1) * pageSize;
+        if (start > business.length) {
+            start = 0;
+        }
+        let end = start + pageSize;
         return (
             <Box title="交付时效排行榜" contentClass={'tableHeight'} select={<select value={this.state.selectVal} className={styles.select} onChange={e => { this.getSelect(e.target.value) }}>
                 <option value='area'>区域维度</option>
@@ -99,11 +128,11 @@ export default class index extends PureComponent {
                         </tr>
                     </thead>
                     <tbody className={styles.tableBody}>
-                        {business.slice(0, 12).map((e, i) => (
+                        {business.slice(start, end).map((e, i) => (
                             <tr
                                 onClick={() => { this.getRow(e) }}
                                 key={e.ranking + Math.random()}
-                                className={`${animate.animated} ${i === 0 ? animate.fadeInRight : animate.slideInDown
+                                className={`${animate.animated} ${animate.slideInDown
                                     }`}
                             >
                                 <td>{e.ranking}</td>

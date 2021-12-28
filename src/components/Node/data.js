@@ -7,19 +7,21 @@ const node = {
     "class": "客户\n下单",
     // color: '#fff',//node节点边框的颜色
     label: "客户\n下单",
+    name:'warning',
 
   }, {
     id: 'node2',
     x: 100,
     y: 150,
     "class": "客服\n确认",
-    "label": "客服\n确认"
+    "label": "客服\n确认",
+    name:'abnormal',
   }, {
     id: 'node3',
     x: 180,
     y: 150,
     "class": "客服\n开单",
-    "label": "客服\n开单"
+    "label": "客服\n开单",
   }, {
     id: 'node4',
     x: 280,

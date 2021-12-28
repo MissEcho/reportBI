@@ -48,60 +48,108 @@ export default function () {
     }
     return [[startPoint.x, startPoint.y], point1, point2, [endPoint.x, endPoint.y]]
   }
+  //warning ,abnormal
+  const colors = ['#ff0000', '#00ff00']
 
   G6.registerNode('breath-node', {
-    afterDraw: function afterDraw(cfg, group) {
-      var r = cfg.size * 20;
-      console.log(cfg, group);
-      var back1 = group.addShape('circle', {
+    afterDraw(cfg, group) {
+      if (!cfg.name) {
+        return;
+      }
+      let r = cfg.size / 2;
+      if (isNaN(r)) {
+        r = cfg.size[0] / 2;
+      }
+      let color = '';
+      if (cfg.name == 'warning') {
+        color = colors[0];
+      }
+      if (cfg.name == 'abnormal') {
+        color = colors[1];
+      }
+      // 第一个背景圆
+      const back1 = group.addShape('circle', {
         zIndex: -3,
         attrs: {
           x: 0,
           y: 0,
-          r: r,
-          fill: cfg.color || cfg.style && cfg.style.fill,
-          opacity: 0.6
-        }
+          r,
+          fill: color,
+          opacity: 0.6,
+        },
+        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        name: 'circle-shape1',
       });
-      var back2 = group.addShape('circle', {
-        // zIndex: -2,
+      // 第二个背景圆
+      const back2 = group.addShape('circle', {
+        zIndex: -2,
         attrs: {
           x: 0,
           y: 0,
-          r: r,
-          fill: cfg.color,
-          // 为了显示清晰，随意设置了颜色
-          opacity: 0.6
-        }
+          r,
+          fill: color, // 为了显示清晰，随意设置了颜色
+          opacity: 0.6,
+        },
+        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        name: 'circle-shape2',
       });
-      var back3 = group.addShape('circle', {
+      // 第三个背景圆
+      const back3 = group.addShape('circle', {
         zIndex: -1,
         attrs: {
           x: 0,
           y: 0,
-          r: r,
-          fill: cfg.color,
-          opacity: 0.6
-        }
+          r,
+          fill: color,
+          opacity: 0.6,
+        },
+        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        name: 'circle-shape3',
       });
-      group.sort(); // 排序，根据zIndex 排序
-      var delayBase = Math.random() * 2000;
-      back1.animate({ // 逐渐放大，并消失
-        r: r + 10,
-        opacity: 0.0,
-        repeat: true // 循环
-      }, 3000, 'easeCubic', null, delayBase); // 无延迟
-      back2.animate({ // 逐渐放大，并消失
-        r: r + 10,
-        opacity: 0.0,
-        repeat: true // 循环
-      }, 3000, 'easeCubic', null, delayBase + 1000); // 1 秒延迟
-      back3.animate({ // 逐渐放大，并消失
-        r: r + 10,
-        opacity: 0.0,
-        repeat: true // 循环
-      }, 3000, 'easeCubic', null, delayBase + 2000); // 2 秒延迟
-    }
+      group.sort(); // 排序，根据 zIndex 排序
+
+      // 第一个背景圆逐渐放大，并消失
+      back1.animate(
+        {
+          r: r + 10,
+          opacity: 0.1,
+        },
+        {
+          repeat: true, // 循环
+          duration: 3000,
+          easing: 'easeCubic',
+          delay: 0, // 无延迟
+        },
+      );
+
+      // 第二个背景圆逐渐放大，并消失
+      back2.animate(
+        {
+          r: r + 10,
+          opacity: 0.1,
+        },
+        {
+          repeat: true, // 循环
+          duration: 3000,
+          easing: 'easeCubic',
+          delay: 1000, // 1 秒延迟
+        },
+      ); // 1 秒延迟
+
+      // 第三个背景圆逐渐放大，并消失
+      back3.animate(
+        {
+          r: r + 10,
+          opacity: 0.1,
+        },
+        {
+          repeat: true, // 循环
+          duration: 3000,
+          easing: 'easeCubic',
+          delay: 2000, // 2 秒延迟
+        },
+      );
+    },
   }, 'circle');
 
   // custom the edge
@@ -200,23 +248,19 @@ export default function () {
         width: 550,
         height: 550,
         defaultNode: {
-          shape: 'breath-node',
+          type: 'breath-node',
           size: 35,
-          color: '#ffff00',
-          // stroke:'#fff',
+          color: "#40a9ff",
           labelCfg: {
             position: 'center',//位置，上下左右
             offset: 10,
             style: {
-              fill: "#fff", //文本的颜色
+              fill: "#333", //文本的颜色
               fontSize: 10,
             }
           },
           style: {
-            lineWidth: 3,
-            fill: 'rgb(240, 223, 83)',
-            fillOpacity: 0,
-            // opacity:0.4,
+            fill: "yellow"
           }
         },
         defaultEdge: {
@@ -236,6 +280,11 @@ export default function () {
       const model = edge.getModel();
       model.color = "#ff0000"
       edge.update(model)
+    })
+    graph.on('node:click', evt => {
+      const node = evt.item;
+      const model = node.getModel();
+      alert('你是否需要深度分析 ' + model.label.replaceAll('\n','') + ' 节点?')
     })
     graph.render();
   }, []);

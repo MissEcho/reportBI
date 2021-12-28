@@ -26,6 +26,45 @@
     background: url('../../assets/imgs/line2.png') no-repeat bottom center;
   }
 
+  .flow {
+    position: absolute;
+    right: 18%;
+    top: 5%;
+
+    div {
+      cursor: pointer;
+      color: #4e4a4a;
+
+      span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background-color: #4e4a4a;
+      }
+
+      &:nth-child(1) {
+        &.active {
+          color: #d20000;
+
+          span {
+            background-color: #d20000;
+          }
+        }
+      }
+
+      &:nth-child(2) {
+        &.active {
+          color: turquoise;
+
+          span {
+            background-color: turquoise;
+          }
+        }
+      }
+    }
+  }
+
   .desc {
     position: absolute;
     right: 2px;
@@ -38,20 +77,63 @@
     align-items: center;
 
     .online {
+      background-color: #44db68;
       width: 100px;
       height: 30px;
       transition: .2s ease-out;
-      background: url('../../assets/imgs/online.png') no-repeat right center;
-      background-size: contain;
+      color: #fff;
+      border-radius: 4px;
+      line-height: 30px;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      padding: 0 8px;
+      transition: ease-out 1s;
+
+      .box {
+        display: inline-block;
+        background-color: #fff;
+        width: 24px;
+        height: 24px;
+        border-radius: 2px;
+      }
+
+      .text {
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 4px;
+      }
     }
 
     .outline {
+      background-color: #d20000;
       width: 100px;
       height: 30px;
       transition: .2s ease-out;
-      background: url('../../assets/imgs/outline.png') no-repeat right center;
-      background-size: contain;
+      color: #fff;
+      border-radius: 4px;
+      line-height: 30px;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px;
+      transition: ease-out 1s;
+
+      .box {
+        display: inline-block;
+        background-color: #fff;
+        width: 24px;
+        height: 24px;
+        border-radius: 2px;
+      }
+
+      .text {
+        display: inline-block;
+        font-size: 12px;
+      }
     }
+
 
     .setIcon {
       margin-right: 8px;
