@@ -6,7 +6,7 @@ import Box from '@/components/Box';
 import styles from './index.scss';
 const columns = [
     {
-        title: '序号',
+        title: '排名',
         dataIndex: 'ranking',
         width: 75,
     },
@@ -46,6 +46,7 @@ export default class index extends PureComponent {
         this.state = {
             selectVal: 'area',
             business: [],
+            endNum:7,
             effectiveness: {}
         };
     }
@@ -56,15 +57,18 @@ export default class index extends PureComponent {
         let { business, selectVal } = state;
         if (Object.keys(effectiveness).length !== 0) {
             let listData = effectiveness[selectVal];
+            // listData存起来
             return {
                 business: [
                     ...listData,
+                    ...business,
                 ],
                 effectiveness
             };
         }
         return null;
     }
+
     getSelect = (val) => {
         let { effectiveness } = this.state;
         this.setState({
@@ -78,9 +82,9 @@ export default class index extends PureComponent {
     render() {
         const { business } = this.state;
         return (
-            <Box title="供应链中心交付时效" contentClass={'tableHeight'} select={<select value={this.state.selectVal} className={styles.select} onChange={e => { this.getSelect(e.target.value) }}>
-                <option value='category'>品类维度</option>
+            <Box title="交付时效排行榜" contentClass={'tableHeight'} select={<select value={this.state.selectVal} className={styles.select} onChange={e => { this.getSelect(e.target.value) }}>
                 <option value='area'>区域维度</option>
+                <option value='category'>品类维度</option>
                 <option value='office'>分公司维度</option>
                 <option value='customer'>核心客户</option>
             </select>}>
@@ -105,7 +109,7 @@ export default class index extends PureComponent {
                                 <td>{e.ranking}</td>
                                 <td>{e.kpi}</td>
                                 <td>{e.month}</td>
-                                <td style={{ color: e.growth > 0 ? '#ff0000' : '#00FF00' }}>{e.growth}</td>
+                                <td style={{ color: e.growth > 0 ? '#00FF00' : '#ff0000' }}>{e.growth}%</td>
                                 <td>{e.aveYear}</td>
                                 <td>{e.target}</td>
                             </tr>
