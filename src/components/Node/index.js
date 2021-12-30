@@ -5,7 +5,7 @@ export default function () {
   const percent = [7, 2, 1];//一直要保证三个数之和为10；而且要根据顺序来，第一个表示红，第二个是，第三个是，这样才能和下面对上
   const ref = React.useRef(null);
   let graph = null;
-  const lineDash = [4, 2, 1, 2];
+  const lineDash = [1];
   const getPointByLine = (startPoint, endPoint, percent = []) => {
     // 利用percent求分割点，即所有线段分为3段 ，6个点
     if (percent.length < 3) {
@@ -49,7 +49,7 @@ export default function () {
     return [[startPoint.x, startPoint.y], point1, point2, [endPoint.x, endPoint.y]]
   }
   //warning ,abnormal
-  const colors = ['#ff0000', '#00ff00']
+  const colors = ['#ff0000', '#ffCC00']
 
   G6.registerNode('breath-node', {
     afterDraw(cfg, group) {
@@ -168,7 +168,7 @@ export default function () {
                 ['M', _p[0][0], _p[0][1]],
                 ['L', _p[1][0], _p[1][1]],
               ],
-              fill: '#ff0000',
+              // fill: '#ff0000',
               stroke: '#ff0000',
               lineWidth: 4,
             },
@@ -179,8 +179,8 @@ export default function () {
                 ['M', _p[1][0], _p[1][1]],
                 ['L', _p[2][0], _p[2][1]],
               ],
-              fill: '#FFFF00',
-              stroke: '#FFFF00',
+              // fill: '#FFFF00',
+              stroke: '#FFCC00',
               lineWidth: 4,
             },
           });
@@ -216,6 +216,48 @@ export default function () {
     // 动画
     afterDraw(cfg, group) {
       const shape = group.get('children')[0];
+      const length = shape.getTotalLength();
+      let circleCount = Math.ceil(length / 20);
+      circleCount = circleCount === 0 ? 1 : circleCount;
+
+      const _loop = function _loop(i) {
+        const delay = Math.random() * 1000;
+        const start = shape.getPoint(i / circleCount);
+        const circle = group.addShape('circle', {
+          attrs: {
+            x: start.x,
+            y: start.y,
+            r: 2,
+            fill: '#A0F3AF',
+            shadowColor: '#fff',
+            shadowBlur: 30,
+          },
+          name: 'circle-shape',
+        });
+        circle.animate(
+          (ratio) => {
+            ratio += i / circleCount;
+            if (ratio > 1) {
+              ratio %= 1;
+            }
+            const tmpPoint = shape.getPoint(ratio);
+            return {
+              x: tmpPoint.x,
+              y: tmpPoint.y,
+            };
+          },
+          {
+            repeat: true,
+            duration: 10 * length,
+            easing: 'easeCubic',
+            delay,
+          },
+        );
+      };
+
+      for (let i = 0; i < circleCount; i++) {
+        _loop(i);
+      }
       if (cfg.isrunning) {
         let index = 0;
         // Define the animation
@@ -240,27 +282,46 @@ export default function () {
       }
     },
   }, 'line');
-
+  const timeBarData = [];
+  for (let i = 0; i < 100; i++) {
+    timeBarData.push({
+      date: `2020${i}`,
+      value: Math.round(Math.random() * 300),
+    });
+  }
+  const timebar = new G6.TimeBar({
+    x: 0,
+    y: 0,
+    width: 500,
+    height: 150,
+    padding: 10,
+    type: 'trend',
+    trend: {
+      data: timeBarData,
+    },
+  });
   useEffect(() => {
     if (!graph) {
       graph = new G6.Graph({
         container: ref.current,
         width: 550,
         height: 550,
+        // plugins: [timebar],
         defaultNode: {
           type: 'breath-node',
           size: 35,
-          color: "#40a9ff",
+          color: "#f3f5f7",//节点边框颜色
           labelCfg: {
             position: 'center',//位置，上下左右
             offset: 10,
             style: {
-              fill: "#333", //文本的颜色
+              fill: "#fff", //文本的颜色
               fontSize: 10,
             }
           },
           style: {
-            fill: "yellow"
+            fill: "#021441",//节点填充颜色
+            // opacity:0.5
           }
         },
         defaultEdge: {
@@ -284,7 +345,7 @@ export default function () {
     graph.on('node:click', evt => {
       const node = evt.item;
       const model = node.getModel();
-      alert('你是否需要深度分析 ' + model.label.replaceAll('\n','') + ' 节点?')
+      alert('你是否需要深度分析 ' + model.label.replaceAll('\n', '') + ' 节点?')
     })
     graph.render();
   }, []);

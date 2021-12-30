@@ -7,7 +7,6 @@ const node = {
     "class": "客户\n下单",
     // color: '#fff',//node节点边框的颜色
     label: "客户\n下单",
-    name:'warning',
 
   }, {
     id: 'node2',
@@ -32,6 +31,7 @@ const node = {
     id: 'node5',
     x: 380,
     y: 150,
+    name:'warning',
     "class": "仓库\n发货",
     "label": "仓库\n发货"
   }, {
@@ -56,6 +56,7 @@ const node = {
     id: 'node9',
     x: 280,
     y: 280,
+    name:'warning',
     "class": "采购\n下单",
     "label": "采购\n下单"
   }, {
@@ -87,7 +88,8 @@ const node = {
     x: 180,
     y: 400,
     "class": "换货\n审核",
-    "label": "换货\n审核"
+    "label": "换货\n审核",
+    name:'abnormal'
   }],
   edges: [{
     id: 'edge1',

@@ -13,7 +13,7 @@
   overflow: hidden;
 
   .tableHead {
-    &>tr>th {
+    & > tr > th {
       // color: #53b3e4;
       font-size: 12px;
       font-weight: bold;
@@ -21,25 +21,23 @@
       // border-top: 1px solid rgba(83, 179, 228, 0.3);
       // border-bottom: 1px solid rgba(83, 179, 228, 0.3);
     }
-
-
   }
 
   .tableBody {
     font-size: 12px;
 
-    &>tr {
+    & > tr {
       cursor: pointer;
       &:hover {
-        background-color: #190c51
+        background-color: #190c51;
       }
 
       &.on {
-        background-color: #190c51
+        background-color: #190c51;
       }
     }
 
-    &>tr>td {
+    & > tr > td {
       color: #fff;
       line-height: 40px;
 
@@ -64,4 +62,49 @@
   border: 1px solid #1346b9;
   background-color: #040b31;
   outline: none;
+}
+
+.flow {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+
+  div {
+    cursor: pointer;
+    color: #d7d7d7;
+    margin-right: 10px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+
+    span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-radius: 2px;
+      background-color: #d7d7d7;
+    }
+
+    &:nth-child(1) {
+      &.active {
+        color: #9966ff;
+
+        span {
+          background-color: #9966ff;
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      &.active {
+        color: turquoise;
+
+        span {
+          background-color: turquoise;
+        }
+      }
+    }
+  }
 }

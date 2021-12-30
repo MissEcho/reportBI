@@ -26,32 +26,14 @@ const Header = memo(() => {
     let result = !type;
     setType(result)
   }
-  const switchFlow = (item) => {
-    let i = flow.indexOf(item)
-    if (i > -1) {
-      // 存在，则取消
-      if (flow.length == 1) {
-        // alert('至少需要一种流量')
-        return false;
-      } else {
-        flow.splice(i, 1);
-        setFlow([...flow])
-      }
-    } else {
-      setFlow([item, ...flow])
-    }
-  }
+  
   return (
     <div className={styles.header}>
       <div className={styles.time}>
-        <SvgIcon icon="icon-time" className={styles.timeIcon} />
+        {/* <SvgIcon icon="icon-time" className={styles.timeIcon} /> */}
         {moment(time).format(FORMAT)}
       </div>
       <div className={styles.title}>集什供应链执行作战监控中心</div>
-      <div className={styles.flow}>
-        <div onClick={() => { switchFlow('warehouse') }} className={`${flow.indexOf('warehouse') > -1 ? styles.active : ''}`}> <span></span> 到仓</div>
-        <div onClick={() => { switchFlow('straight') }} className={`${flow.indexOf('straight') > -1 ? styles.active : ''}`}> <span></span> 直发</div>
-      </div>
       <div className={styles.desc} onClick={switchStatus} >
         {type ? <div className={styles.online}>
           <span className={styles.box}></span>

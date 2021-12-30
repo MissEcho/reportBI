@@ -2,11 +2,12 @@ import React, { memo } from 'react';
 import styles from './index.scss';
 
 const Box = memo(props => {
-  const { titleClass, select, contentClass, title, children } = props;
+  const { titleClass, legend,select, contentClass, title, children } = props;
   return (
     <div className={styles.box}>
       <div className={styles.head}>
         <div className={`${styles.title} ${titleClass}`}>{title}</div>
+        {legend || null}
         {select || null}
       </div>
       <div className={`${styles.content} ${styles[contentClass]}`}>
