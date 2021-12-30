@@ -51,6 +51,7 @@ const node = {
     x: 180,
     y: 280,
     "class": "采购\n寻源",
+    name:'abnormal',
     "label": "采购\n寻源"
   }, {
     id: 'node9',
@@ -64,6 +65,7 @@ const node = {
     x: 380,
     y: 280,
     "class": "供应商\n接单",
+    name:'warning',
     "label": "供应商\n接单"
   }, {
     id: 'node11',
@@ -103,14 +105,14 @@ const node = {
   },
   {
     id: 'edge2',
-    target: 'node2',
-    source: 'node3',
+    target: 'node3',
+    source: 'node2',
     calc: true,
     // color: '#00FF00'
   }, {
     id: 'edge3',
-    target: 'node3',
-    source: 'node4',
+    target: 'node4',
+    source: 'node3',
     calc: true,
     // color: '#00FF00'
   }, {
@@ -186,8 +188,8 @@ const node = {
     calc: true,
   }, {
     id: 'edge16',
-    target: 'node12',
-    source: 'node5',
+    target: 'node5',
+    source: 'node12',
     // color: '#FF0000',
     calc: true,
   }]
