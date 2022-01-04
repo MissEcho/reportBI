@@ -3,7 +3,7 @@ const node = {
   nodes: [{
     id: 'node1',
     x: 20,
-    y: 150,
+    y: 50,
     "class": "客户\n下单",
     // color: '#fff',//node节点边框的颜色
     label: "客户\n下单",
@@ -11,32 +11,32 @@ const node = {
   }, {
     id: 'node2',
     x: 100,
-    y: 150,
+    y: 50,
     "class": "客服\n确认",
     "label": "客服\n确认",
     name:'abnormal',
   }, {
     id: 'node3',
     x: 180,
-    y: 150,
+    y: 50,
     "class": "客服\n开单",
     "label": "客服\n开单",
   }, {
     id: 'node4',
-    x: 280,
-    y: 150,
+    x: 260,
+    y: 50,
     "class": "客服\n传送",
     "label": "客服\n传送"
   }, {
     id: 'node5',
-    x: 380,
-    y: 150,
+    x: 340,
+    y: 50,
     name:'warning',
     "class": "仓库\n发货",
     "label": "仓库\n发货"
   }, {
     id: 'node6',
-    x: 380,
+    x: 420,
     y: 50,
     "class": "客户\n签收",
     "label": "客户\n签收"
@@ -49,48 +49,55 @@ const node = {
   }, {
     id: 'node8',
     x: 180,
-    y: 280,
+    y: 180,
     "class": "采购\n寻源",
     name:'abnormal',
     "label": "采购\n寻源"
   }, {
     id: 'node9',
     x: 280,
-    y: 280,
+    y: 180,
     name:'warning',
     "class": "采购\n下单",
     "label": "采购\n下单"
   }, {
     id: 'node10',
     x: 380,
-    y: 280,
+    y: 180,
     "class": "供应商\n接单",
     name:'warning',
     "label": "供应商\n接单"
   }, {
     id: 'node11',
     x: 500,
-    y: 280,
+    y: 180,
     "class": "供应商\n发货",
     "label": "供应商\n发货"
   }, {
     id: 'node12',
     x: 500,
-    y: 150,
-    "class": "采购\n入库",
-    "label": "采购\n入库"
+    y: 400,
+    "class": "仓库\n入库",
+    "label": "仓库\n入库"
   }, {
     id: 'node13',
     x: 380,
-    y: 400,
+    y: 280,
     "class": "换货\n申请",
     "label": "换货\n申请"
   }, {
     id: 'node14',
-    x: 180,
+    x: 380,
     y: 400,
     "class": "换货\n审核",
     "label": "换货\n审核",
+    name:'abnormal'
+  }, {
+    id: 'node15',
+    x: 500,
+    y: 280,
+    "class": "物流\n签收",
+    "label": "物流\n签收",
     name:'abnormal'
   }],
   edges: [{
@@ -161,12 +168,6 @@ const node = {
     color: '#00FF00',
     calc: true
   }, {
-    id: 'edge11',
-    target: 'node12',
-    source: 'node11',
-    color: '#00FF00',
-    calc: true,
-  }, {
     id: 'edge13',
     target: 'node13',
     source: 'node10',
@@ -181,15 +182,15 @@ const node = {
     isrunning: true,
     calc: true,
   }, {
-    id: 'edge15',
-    target: 'node8',
-    source: 'node14',
+    id: 'edge16',
+    target: 'node15',
+    source: 'node11',
     // color: '#FF0000',
     calc: true,
   }, {
-    id: 'edge16',
-    target: 'node5',
-    source: 'node12',
+    id: 'edge17',
+    target: 'node12',
+    source: 'node15',
     // color: '#FF0000',
     calc: true,
   }]

@@ -9,7 +9,7 @@ SvgIcon.createFromIconfontCN({
 SvgIcon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_3078447_f9tibqf5rdv.js'
 });
-const FORMAT = 'YYYY/MM/DD HH:mm:SS';
+const FORMAT = 'YYYY-MM-DD HH:mm:SS';
 
 const Header = memo(() => {
   const [time, setTime] = useState(+new Date());
@@ -31,6 +31,7 @@ const Header = memo(() => {
     <div className={styles.header}>
       <div className={styles.time}>
         {/* <SvgIcon icon="icon-time" className={styles.timeIcon} /> */}
+        {/* <P  className={styles.timeIcon}>当前时间：</P> */}
         {moment(time).format(FORMAT)}
       </div>
       <div className={styles.title}>集什供应链执行作战监控中心</div>

@@ -13,7 +13,7 @@
     top: 50%;
     font-size: 26px;
     transform: translateY(-50%);
-
+    font-family: 700;
     .timeIcon {
       margin-right: 8px;
       color: #0bbcfa;
@@ -55,7 +55,7 @@
 
       .box {
         display: inline-block;
-        background-color: #fff;
+        background-color: #ffffff;
         width: 29px;
         height: 29px;
         border-radius: 3px;
@@ -90,6 +90,7 @@
         background-color: #ffffff;
         width: 29px;
         height: 29px;
+        
         border-radius: 3px;
         box-shadow: 1px 1px 1px 1px #f0f0f0 inset;
       }
