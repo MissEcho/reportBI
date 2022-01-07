@@ -34,7 +34,7 @@ const Header = memo(() => {
         {/* <P  className={styles.timeIcon}>当前时间：</P> */}
         {moment(time).format(FORMAT)}
       </div>
-      <div className={styles.title}>集什供应链执行作战监控中心</div>
+      <div className={styles.title}>供应链交付预警监控中心</div>
       <div className={styles.desc} onClick={switchStatus} >
         {type ? <div className={styles.online}>
           <span className={styles.box}></span>
