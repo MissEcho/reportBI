@@ -14,6 +14,7 @@
     font-size: 26px;
     transform: translateY(-50%);
     font-family: 700;
+
     .timeIcon {
       margin-right: 8px;
       color: #0bbcfa;
@@ -26,7 +27,7 @@
     background: url('../../assets/imgs/line2.png') no-repeat bottom center;
   }
 
-  
+
 
   .desc {
     position: absolute;
@@ -39,69 +40,69 @@
     justify-items: center;
     align-items: center;
 
-    .online {
-      background-color: #9966ff;
+    div {
+      position: relative;
       width: 120px;
       height: 35px;
-      transition: .5s ease-out;
       color: #ffffff;
       border-radius: 2px;
-      box-shadow: 2px 2px 1px #402f63;
-      line-height: 35px;
-      display: flex;
-      justify-items: center;
-      align-items: center;
-      padding: 0 5px;
-
-      .box {
-        display: inline-block;
-        background-color: #ffffff;
-        width: 29px;
-        height: 29px;
-        border-radius: 3px;
-        box-shadow: 1px 1px 1px 1px #f0f0f0 inset;
-      }
-
-      .text {
-        display: inline-block;
-        font-size: 14px;
-        font-weight: 700;
-        margin-left: 4px;
-        text-shadow: 1px 1px 1px 1px #666666;
-      }
-    }
-
-    .outline {
-      background-color: #666666;
-      width: 120px;
-      height: 35px;
-      transition: .5s ease-out;
-      color: #ffffff;
-      border-radius: 2px;
-      line-height: 35px;
-      box-shadow: 2px 2px 1px #313131;
       display: flex;
       justify-items: center;
       align-items: center;
       justify-content: space-around;
       padding: 0 5px;
+
+      span {
+        position: absolute;
+
+        &.box {
+          display: inline-block;
+          background-color: #ffffff;
+          width: 29px;
+          height: 29px;
+          border-radius: 3px;
+          box-shadow: 1px 1px 1px 1px #f0f0f0 inset;
+          transition: left .3s ease-out;
+        }
+
+        &.text {
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          transition: left .2s ease-out;
+        }
+      }
+    }
+
+    .online {
+      background-color: #9966ff;
+      box-shadow: 2px 2px 1px #402f63;
+
       .box {
-        display: inline-block;
-        background-color: #ffffff;
-        width: 29px;
-        height: 29px;
-        
-        border-radius: 3px;
-        box-shadow: 1px 1px 1px 1px #f0f0f0 inset;
+        left: 8px;
+        top: 3px;
       }
 
       .text {
-        display: inline-block;
-        font-size: 14px;
-        font-weight: 700;
-        text-shadow: 1px 1px 1px 1px #666666;
-        // margin-left: 4px;
+        left: 45px;
+        top: 8px;
       }
+    }
+
+    .outline {
+      background-color: #666666;
+      box-shadow: 2px 2px 1px #313131;
+
+      .box {
+        left: 84px;
+        top: 3px;
+      }
+
+      .text {
+        left: 20px;
+        top: 8px;
+      }
+
     }
 
 

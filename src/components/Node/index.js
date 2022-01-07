@@ -336,12 +336,12 @@ export default function () {
       });
     }
     graph.data(node);
-    graph.on('edge:click', evt => {
-      const edge = evt.item;
-      const model = edge.getModel();
-      model.color = "#ff0000"
-      edge.update(model)
-    })
+    // graph.on('edge:click', evt => {
+    //   const edge = evt.item;
+    //   const model = edge.getModel();
+    //   model.color = "#ff0000"
+    //   edge.update(model)
+    // })
     graph.on('node:click', evt => {
       const node = evt.item;
       const model = node.getModel();
@@ -349,5 +349,6 @@ export default function () {
     })
     graph.render();
   }, []);
+
   return <div ref={ref}></div>;
 }

@@ -26,7 +26,7 @@ const Header = memo(() => {
     let result = !type;
     setType(result)
   }
-  
+
   return (
     <div className={styles.header}>
       <div className={styles.time}>
@@ -36,17 +36,10 @@ const Header = memo(() => {
       </div>
       <div className={styles.title}>集什供应链执行作战监控中心</div>
       <div className={styles.desc} onClick={switchStatus} >
-        {type ? <div className={styles.online}>
+        <div className={`${type ? styles.online : styles.outline}`}>
           <span className={styles.box}></span>
-          <span className={styles.text}>实时模式</span>
-        </div> :
-          <div className={styles.outline}>
-            <span className={styles.text}>离线模式</span>
-            <span className={styles.box}></span></div>}
-        {/* 实时{type}
-        {type ? <SvgIcon icon="icon-kaiguan-kai" className={`${styles.setIcon} ${styles.open}`} /> :
-          <SvgIcon icon="icon-kaiguan-guan" className={`${styles.setIcon} ${styles.close}`} />}
-        离线 */}
+          <span className={styles.text}>{`${type?'实时模式':'离线模式'}`}</span>
+        </div>
       </div>
     </div>
   );
