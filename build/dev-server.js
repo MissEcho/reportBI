@@ -43,7 +43,10 @@ io.on('connection', socket => {
       contentType: 'msg',
       data: map(),
     });
-
+    socket.emit('message', {
+      contentType: 'table',
+      data: table(),
+    });
     if (t) {
       clearInterval(t);
       t = null;
@@ -54,7 +57,11 @@ io.on('connection', socket => {
         contentType: 'msg',
         data: map(),
       });
-    }, 5000);
+      socket.emit('message', {
+        contentType: 'table',
+        data: table(),
+      });
+    }, 10000);
   });
 
   socket.on('loan', () => {
@@ -89,12 +96,6 @@ io.on('connection', socket => {
     socket.emit('message', {
       contentType: 'equipment',
       data: equipment(),
-    });
-  });
-  socket.on('table', () => {
-    socket.emit('message', {
-      contentType: 'table',
-      data: table(),
     });
   });
 });

@@ -5,10 +5,12 @@ import { takeEvery } from 'redux-saga/effects';
 import { saveMap } from '../actions/map';
 import { saveLoan } from '../actions/loan';
 import { saveTable } from '../actions/table';
+import { saveNode } from '../actions/node';
 
 export default function* rootSaga() {
   // yield takeLatest('setSocket', setSocket);
   yield takeEvery('saveMap', saveMap);
   yield takeEvery('saveLoan', saveLoan);
   yield takeEvery('saveTable', saveTable);
+  yield takeEvery('saveNode', saveNode);
 }

@@ -64,6 +64,7 @@ export default class index extends PureComponent {
     const loanStatisticalData = genLoanStatistical(loanStatistical, labels);
     const ageStatisticalData = genAgeStatistical(ageStatistical);
     const ageAverageData = genAgeAverage(ageAverage);
+    console.log(ageAverage);
 
     return (
       <div className={styles.topRight}>
@@ -76,7 +77,8 @@ export default class index extends PureComponent {
                   {' '}
                   [
                   <SvgIcon icon="icon-icon-caret-up" className={styles.caretUpIcon} />
-                  {`${overview.custCountComp}%`}]
+                  {`${overview.custCountComp}%`}
+]
                 </span>
               </div>
               <div className={styles.content}>{overview.custCount}</div>
@@ -88,7 +90,8 @@ export default class index extends PureComponent {
                   {' '}
                   [
                   <SvgIcon icon="icon-icon-caret-up" className={styles.caretUpIcon} />
-                  {`${overview.loanCountComp}%`}]
+                  {`${overview.loanCountComp}%`}
+]
                 </span>
               </div>
               <div className={styles.content}>{overview.loanCount}</div>
@@ -100,7 +103,8 @@ export default class index extends PureComponent {
                   {' '}
                   [
                   <SvgIcon icon="icon-caret-down" className={styles.caretDownIcon} />
-                  {`${overview.overdueAmtComp}%`}]
+                  {`${overview.overdueAmtComp}%`}
+]
                 </span>
               </div>
               <div className={styles.content}>{overview.overdueAmt}</div>

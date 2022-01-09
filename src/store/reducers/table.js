@@ -1,6 +1,26 @@
 import { SAVE_TABLE } from '../types';
-import table from '../../../mock/table';
-const defaultState = table();
+
+const defaultState = {
+  service: [],
+  purchase: [],
+  source: [],
+  logistics: [],
+  effectiveness: [],
+  abnormal: [],
+  overview: {
+    sum1: 0,
+    sum2: 0,
+    sum3: 0,
+    sum4: 0,
+    sum5: 0,
+  },
+  prescription: {
+    area: {},
+    category: {},
+    office: {},
+    customer: {},
+  },
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {

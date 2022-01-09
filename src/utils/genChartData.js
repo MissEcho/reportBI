@@ -725,7 +725,7 @@ export function genEquipment(data) {
       itemGap: 10,
       formatter: name => {
         const item = data.find(k => k.name === name);
-        return `{title| ${name}}\n{value| ${item.value} 人}`;
+        return `{title| ${name}}\n{value| ${item.value} }`;
       },
       textStyle: {
         rich: {
@@ -772,5 +772,331 @@ export function genEquipment(data) {
       },
     ],
     series,
+  };
+}
+
+export function genEquipment2(data) {
+  const yCategory = [];
+  const series = [];
+  const sum = data.reduce((prev, cur) => cur.value + prev, 0);
+  data.forEach((item, i) => {
+    series.push({
+      name: '设置分布',
+      type: 'pie',
+      clockWise: false, // 顺时加载
+      hoverAnimation: false, // 鼠标移入变大
+      radius: [`${75 - i * 15}%`, `${66 - i * 15}%`],
+      center: ['50%', '35%'],
+      label: {
+        show: false,
+      },
+      itemStyle: {
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        borderWidth: 5,
+      },
+      data: [
+        {
+          value: item.value,
+          name: item.name,
+        },
+        {
+          value: (sum * 4) / 3 - item.value,
+          name: '',
+          itemStyle: {
+            color: 'rgba(0,0,0,0)',
+            borderWidth: 0,
+          },
+          tooltip: {
+            show: false,
+          },
+          hoverAnimation: false,
+        },
+      ],
+    });
+    series.push({
+      name: '',
+      type: 'pie',
+      silent: true,
+      z: 1,
+      clockWise: false, // 顺时加载
+      hoverAnimation: false, // 鼠标移入变大
+      radius: [`${75 - i * 15}%`, `${66 - i * 15}%`],
+      center: ['50%', '35%'],
+      label: {
+        show: false,
+      },
+      itemStyle: {
+        label: {
+          show: false,
+        },
+        labelLine: {
+          show: false,
+        },
+        borderWidth: 5,
+      },
+      data: [
+        {
+          value: 8,
+          itemStyle: {
+            color: 'rgba(151, 136, 136, .4)',
+            borderWidth: 0,
+          },
+          tooltip: {
+            show: false,
+          },
+          hoverAnimation: false,
+        },
+        {
+          value: 2,
+          name: '',
+          itemStyle: {
+            color: 'rgba(0,0,0,0)',
+            borderWidth: 0,
+          },
+          tooltip: {
+            show: false,
+          },
+          hoverAnimation: false,
+        },
+      ],
+    });
+    yCategory.push(`${((item.value / sum) * 100).toFixed(2)}%`);
+  });
+  return {
+    color: ['#FF8700', '#ffc300', '#00e473', '#009DFF'],
+    tooltip: {
+      formatter: params => {
+        return `
+          <p style="text-align:left;line-height:18px">
+            <i class="chart-circle" style="${styles}background-color:${params.color}"></i>
+            ${params.name}
+          </p>
+          <p style="text-align:left;line-height:18px">
+            数量：${params.data.value}
+          </p>
+          <p style="text-align:left;line-height:18px">
+            占比：${params.percent}%
+          </p>
+        `;
+      },
+    },
+    grid: {
+      top: '2%',
+      bottom: '80%',
+      left: '50%',
+      containLabel: false,
+    },
+    legend: {
+      show: true,
+      bottom: '0%',
+      left: '25%',
+      // orient:'vertical',
+      data: data.map(k => k.name),
+      itemWidth: 10,
+      itemHeight: 8,
+      itemGap: 4,
+      formatter: name => {
+        const item = data.find(k => k.name === name);
+        return `{title| ${name}} {value| ${item.value} }`;
+      },
+      textStyle: {
+        rich: {
+          title: {
+            fontSize: 10,
+            lineHeight: 10,
+            color: '#ccc',
+            // color: "rgba(0,0,0,.45)"
+          },
+          value: {
+            fontSize: 14,
+            lineHeight: 18,
+            color: '#fff',
+            // color: "rgba(0,0,0,.85)"
+          },
+        },
+      },
+    },
+    yAxis: [
+      {
+        type: 'category',
+        inverse: true,
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          interval: 0,
+          inside: true,
+          textStyle: {
+            color: '#eee',
+            fontSize: 10,
+          },
+          show: true,
+        },
+        data: yCategory,
+      },
+    ],
+    xAxis: [
+      {
+        show: false,
+      },
+    ],
+    series,
+  };
+}
+export function genAgeAverage2(data) {
+  return {
+    title: {
+      show: false,
+      text: '',
+      textStyle: {
+        color: '#eee',
+        fontSize: 14,
+      },
+      top: 0,
+      left: 'center',
+    },
+    grid: {
+      top: '30px',
+      left: '0',
+      right: '0',
+      bottom: '0',
+      containLabel: true,
+    },
+    xAxis: {
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#fff',
+        },
+      },
+      type: 'category',
+      boundaryGap: true,
+      data: data.age && data.age.map(t => `${t.date}`),
+    },
+    yAxis: {
+      inverse: false,
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        textStyle: {
+          fontSize: 10,
+          color: '#fff',
+        },
+      },
+      splitLine: {
+        lineStyle: {
+          color: 'rgba(168, 178, 185, .1)',
+        },
+      },
+      type: 'value',
+    },
+    series: [
+      {
+        name: '人均贷款金额',
+        type: 'line',
+        // smooth: true, //是否平滑曲线显示
+        showAllSymbol: true,
+        symbol: 'emptyCircle',
+        symbolSize: 6,
+        lineStyle: {
+          normal: {
+            color: '#4272df', // 线条颜色
+          },
+          borderColor: '#f0f',
+        },
+        label: {
+          show: true,
+          position: 'top',
+          textStyle: {
+            color: '#fff',
+          },
+        },
+        itemStyle: {
+          normal: {
+            color: '#4272df',
+          },
+        },
+        tooltip: {
+          show: false,
+        },
+        // areaStyle: {
+        //   // 区域填充样式
+        //   normal: {
+        //     // 线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+        //     color: new echarts.graphic.LinearGradient(
+        //       0,
+        //       0,
+        //       0,
+        //       1,
+        //       [
+        //         {
+        //           offset: 0,
+        //           color: 'rgba(0,154,120,1)',
+        //         },
+        //         {
+        //           offset: 1,
+        //           color: 'rgba(0,0,0, 0)',
+        //         },
+        //       ],
+        //       false
+        //     ),
+        //     shadowColor: 'rgba(53,142,215, 0.9)', // 阴影颜色
+        //     shadowBlur: 20, // shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+        //   },
+        // },
+        data: data.average && data.average.map(t => t.value),
+      },
+      {
+        name: '人数',
+        type: 'bar',
+        barWidth: 20,
+        // tooltip: {
+        //   show: false
+        // },
+        // label: {
+        //   show: true,
+        //   position: 'top',
+        //   textStyle: {
+        //     color: '#fff',
+        //   }
+        // },
+        itemStyle: {
+          normal: {
+            color: '#4272df',
+            // color(params) {
+            //   const colorList = [
+            //     '#0ec1ff',
+            //     '#10cdff',
+            //     '#12daff',
+            //     '#15ebff',
+            //     '#17f8ff',
+            //     '#1cfffb',
+            //     '#1dfff1',
+            //   ];
+            //   return colorList[params.dataIndex];
+            // },
+          },
+        },
+        data: data.age && data.age.map(t => t.value),
+      },
+    ],
   };
 }
