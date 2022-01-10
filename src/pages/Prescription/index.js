@@ -144,7 +144,9 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('warehouse') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span /> 到仓
+              <span />
+              {' '}
+到仓
             </div>
             <div
               onClick={() => {
@@ -153,7 +155,9 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('straight') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span /> 直发
+              <span />
+              {' '}
+直发
             </div>
           </div>
         }
@@ -196,7 +200,10 @@ export default class index extends PureComponent {
                 <td>{e.ranking}</td>
                 <td>{e.kpi}</td>
                 <td>{e.month}</td>
-                <td style={{ color: e.growth > 0 ? '#00FF00' : '#ff0000' }}>{e.growth}%</td>
+                <td style={{ color: e.growth > 0 ? '#00FF00' : '#ff0000' }}>
+                  {e.growth}
+%
+                </td>
                 <td>{e.aveYear}</td>
                 <td>{e.target}</td>
               </tr>
