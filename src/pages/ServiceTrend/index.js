@@ -15,7 +15,7 @@ export default class index extends PureComponent {
       table: { nodeAllData },
       node,
     } = this.props;
-    let curr = nodeAllData[node.text] ? nodeAllData[node.text]['leftMid'] : { data: {} };
+    const curr = nodeAllData[node.text] ? nodeAllData[node.text].leftMid : { data: {} };
     const trendData = curr.data || {
       bar: [
         { date: '1', value: 1075 },

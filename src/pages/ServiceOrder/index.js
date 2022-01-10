@@ -15,7 +15,7 @@ export default class index extends PureComponent {
       table: { nodeAllData },
       node,
     } = this.props;
-    let curr = nodeAllData[node.text] ? nodeAllData[node.text]['leftTop'] : { data: {} };
+    const curr = nodeAllData[node.text] ? nodeAllData[node.text].leftTop : { data: {} };
     const dataLeft = curr.data.dataLeft || [
       { name: '总处理行', value: 10211 },
       { name: '已处理行项', value: 6111 },

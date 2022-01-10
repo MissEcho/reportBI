@@ -1,7 +1,8 @@
 const Mock = require('mockjs');
+
 module.exports = function nodeConfig() {
-  let nums = getThreeNum();
-  let nums2 = getSixNum();
+  const nums = getThreeNum();
+  const nums2 = getSixNum();
   return {
     客户下单: {
       leftTop: {
@@ -1957,7 +1958,7 @@ module.exports = function nodeConfig() {
 };
 
 function getThreeNum() {
-  let numbers = Mock.mock({
+  const numbers = Mock.mock({
     'num1|200-300': 1, // 生成200到300之间的数字
     'num2|200-300': 1,
   });
@@ -1966,7 +1967,7 @@ function getThreeNum() {
 }
 
 function getSixNum() {
-  let numbers = Mock.mock({
+  const numbers = Mock.mock({
     'num1|200-300': 1, // 生成200到300之间的数字
     'num2|200-300': 1,
     'num3|200-300': 1,

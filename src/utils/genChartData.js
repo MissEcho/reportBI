@@ -1012,7 +1012,7 @@ export function genTrend(data) {
       {
         name: '',
         type: 'line',
-        animationDelay: function(idx) {
+        animationDelay(idx) {
           // 越往后的数据延迟越大
           return idx * 100;
         },
@@ -1072,7 +1072,7 @@ export function genTrend(data) {
       {
         name: '',
         type: 'bar',
-        animationDelay: function(idx) {
+        animationDelay(idx) {
           // 越往后的数据延迟越大
           return idx * 100;
         },
