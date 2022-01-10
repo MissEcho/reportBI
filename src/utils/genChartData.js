@@ -775,7 +775,7 @@ export function genEquipment(data) {
   };
 }
 
-export function genEquipment2(data) {
+export function genServiceOrder(data) {
   const yCategory = [];
   const series = [];
   const sum = data.reduce((prev, cur) => cur.value + prev, 0);
@@ -951,7 +951,7 @@ export function genEquipment2(data) {
     series,
   };
 }
-export function genAgeAverage2(data) {
+export function genTrend(data) {
   return {
     title: {
       show: false,
@@ -985,7 +985,7 @@ export function genAgeAverage2(data) {
       },
       type: 'category',
       boundaryGap: true,
-      data: data.age && data.age.map(t => `${t.date}`),
+      data: data.bar && data.bar.map(t => `${t.date}`),
     },
     yAxis: {
       inverse: false,
@@ -1010,8 +1010,13 @@ export function genAgeAverage2(data) {
     },
     series: [
       {
-        name: '人均贷款金额',
+        name: '',
         type: 'line',
+        animationDelay: function(idx) {
+          // 越往后的数据延迟越大
+          return idx * 100;
+        },
+        animationEasingUpdate: 'cubicInOut',
         // smooth: true, //是否平滑曲线显示
         showAllSymbol: true,
         symbol: 'emptyCircle',
@@ -1062,11 +1067,16 @@ export function genAgeAverage2(data) {
         //     shadowBlur: 20, // shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
         //   },
         // },
-        data: data.average && data.average.map(t => t.value),
+        data: data.line && data.line.map(t => t.value),
       },
       {
-        name: '人数',
+        name: '',
         type: 'bar',
+        animationDelay: function(idx) {
+          // 越往后的数据延迟越大
+          return idx * 100;
+        },
+        animationEasingUpdate: 'cubicInOut',
         barWidth: 20,
         // tooltip: {
         //   show: false
@@ -1095,7 +1105,7 @@ export function genAgeAverage2(data) {
             // },
           },
         },
-        data: data.age && data.age.map(t => t.value),
+        data: data.bar && data.bar.map(t => t.value),
       },
     ],
   };

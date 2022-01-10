@@ -19,10 +19,13 @@ const getLeftTopByNode = node => {
   const { text } = node;
   switch (text) {
     case '客户下单':
-      return <ServiceOrder header="客户下单概览" />;
+      return <ServiceOrder />;
       break;
     case '客户确认':
-      return <ServiceOrder header="客户确认" />;
+      return <ServiceOrder />;
+      break;
+    case '客户开单':
+      return <ServiceOrder />;
       break;
     default:
       return <Service header="客服总览" />;
@@ -34,7 +37,7 @@ const getLeftMidByNode = node => {
   const { text } = node;
   switch (text) {
     case '客户下单':
-      return <ServiceTrend header="客户下单概览" />;
+      return <ServiceTrend />;
       break;
     default:
       return <Purchase />;

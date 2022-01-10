@@ -100,5 +100,5 @@ module.exports = {
       chunks: 'all', // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
     },
   },
-  performance: false, // 关闭性能提示
+  performance: {}, // 关闭性能提示
 };

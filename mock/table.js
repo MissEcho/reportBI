@@ -1,5 +1,4 @@
 const Mock = require('mockjs');
-
 module.exports = function table() {
   return {
     // 客服总览
@@ -824,6 +823,7 @@ module.exports = function table() {
         time: '2021.08.12 14:12:12',
       },
     ],
+    nodeAllData: getNodeData(),
   };
 };
 
@@ -855,8 +855,10 @@ function getService() {
     item.alarmAmount = line1.alarmAmount;
     item.abnormalAmount = line1.abnormalAmount;
     item.normalAmount = line1.amount - line1.alarmAmount - line1.abnormalAmount;
-    item.untreatedAbnormalFee =
-      `${(((line1.alarmAmount + line1.abnormalAmount) / line1.amount) * 100).toFixed(2)  }%`;
+    item.untreatedAbnormalFee = `${(
+      ((line1.alarmAmount + line1.abnormalAmount) / line1.amount) *
+      100
+    ).toFixed(2)}%`;
   });
   return data;
 }
@@ -1628,4 +1630,148 @@ function getPrescription() {
     },
   };
   return data;
+}
+
+function getNodeData() {
+  let nums = getThreeNum();
+  let nums2 = getSixNum();
+  return {
+    客户下单: {
+      leftTop: {
+        headerText: '客户下单概览',
+        type: 'pie',
+        fun: () => {
+          return null;
+        },
+        data: {
+          dataLeft: [
+            { name: '总处理行', value: nums.num3 },
+            { name: '已处理行项', value: nums.num2 },
+            { name: '待处理行项', value: nums.num1 },
+          ],
+          dataRight: [
+            { name: '正常行项', value: nums.num3 },
+            { name: '异常行项', value: nums.num2 },
+            { name: '告警行项', value: nums.num1 },
+          ],
+        },
+      },
+      leftMid: {
+        headerText: '客户下单左中',
+        type: 'line',
+        data: {
+          bar: [
+            { date: '1号', value: nums2.num1 },
+            { date: '2号', value: nums2.num2 },
+            { date: '3', value: nums2.num3 },
+            { date: '4', value: nums2.num4 },
+            { date: '5', value: nums2.num5 },
+            { date: '6', value: nums2.num6 },
+          ],
+          line: [
+            { date: '50', value: nums2.num1 + 10 },
+            { date: '60', value: nums2.num2 + 10 },
+            { date: '70', value: nums2.num3 + 10 },
+            { date: '80', value: nums2.num4 + 10 },
+            { date: '90', value: nums2.num5 + 10 },
+            { date: '00', value: nums2.num6 + 10 },
+          ],
+        },
+      },
+      leftBottom: {
+        headerText: '客户下单左下',
+        type: 'table',
+        columns: [
+          {
+            title: '监控节点',
+            dataIndex: 'nodes',
+            width: 75,
+          },
+          {
+            title: '总行项数',
+            dataIndex: 'amount',
+            width: 70,
+          },
+          {
+            title: '告警行项',
+            dataIndex: 'alarmAmount',
+            width: 65,
+          },
+          {
+            title: '异常行项',
+            dataIndex: 'abnormalAmount',
+            width: 65,
+          },
+          {
+            title: '正常行项',
+            dataIndex: 'normalAmount',
+            width: 70,
+          },
+          {
+            title: '异常率',
+            dataIndex: 'untreatedAbnormalFee',
+            width: 60,
+          },
+        ],
+        data: {
+          bar: [
+            { date: '1号', value: nums2.num1 },
+            { date: '2号', value: nums2.num2 },
+            { date: '3', value: nums2.num3 },
+            { date: '4', value: nums2.num4 },
+            { date: '5', value: nums2.num5 },
+            { date: '6', value: nums2.num6 },
+          ],
+          line: [
+            { date: '50', value: nums2.num1 + 10 },
+            { date: '60', value: nums2.num2 + 10 },
+            { date: '70', value: nums2.num3 + 10 },
+            { date: '80', value: nums2.num4 + 10 },
+            { date: '90', value: nums2.num5 + 10 },
+            { date: '00', value: nums2.num6 + 10 },
+          ],
+        },
+      },
+    },
+    客户开单: {
+      leftTop: {
+        headerText: '客户开单概览',
+        type: 'pie',
+        data: {
+          dataLeft: [
+            { name: '总开单行', value: nums.num3 },
+            { name: '已处理行项', value: nums.num2 },
+            { name: '待处理行项', value: nums.num1 },
+          ],
+          dataRight: [
+            { name: '正常行项', value: nums.num3 },
+            { name: '异常行项', value: nums.num2 },
+            { name: '告警行项', value: nums.num1 },
+          ],
+        },
+      },
+    },
+    default: {},
+  };
+}
+
+function getThreeNum() {
+  let numbers = Mock.mock({
+    'num1|200-300': 1, // 生成200到300之间的数字
+    'num2|200-300': 1,
+  });
+  numbers.num3 = numbers.num1 + numbers.num2;
+  return numbers;
+}
+
+function getSixNum() {
+  let numbers = Mock.mock({
+    'num1|200-300': 1, // 生成200到300之间的数字
+    'num2|200-300': 1,
+    'num3|200-300': 1,
+    'num4|200-300': 1,
+    'num5|200-300': 1,
+    'num6|200-300': 1,
+  });
+  return numbers;
 }

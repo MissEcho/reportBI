@@ -17,7 +17,7 @@ export default function(props) {
       return false;
     }
     const point1 = new Array(2);
-      const point2 = new Array(2);
+    const point2 = new Array(2);
     if (startPoint.x == endPoint.x && startPoint.y == endPoint.y) {
       // 两个点重合了，那就没必要分段了
       return false;
@@ -164,9 +164,11 @@ export default function(props) {
     {
       // 绘制不同颜色的线条
       draw(cfg, group) {
-        const {startPoint} = cfg;
-        const {endPoint} = cfg;
-        let line1; let line2; let line3;
+        const { startPoint } = cfg;
+        const { endPoint } = cfg;
+        let line1;
+        let line2;
+        let line3;
         if (cfg.calc) {
           const _p = getPointByLine(startPoint, endPoint, percent);
           if (_p && _p.length == 4) {
@@ -345,6 +347,15 @@ export default function(props) {
       const model = node.getModel();
       props.nodeClick(model);
       // alert('你是否需要深度分析 ' + model.label.replaceAll('\n', '') + ' 节点?')
+    });
+    graph.on('node:mouseenter', evt => {
+      const { item } = evt;
+      graph.setItemState(item, 'hover', true);
+      item.toFront();
+    });
+    graph.on('node:mouseout', evt => {
+      const { item } = evt;
+      graph.setItemState(item, 'hover', false);
     });
     graph.render();
   }, []);

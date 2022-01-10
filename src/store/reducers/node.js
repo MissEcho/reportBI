@@ -3,7 +3,7 @@ import { SAVE_NODE } from '../types';
 const defaultState = {
   type: '',
   name: '',
-  text: '',
+  text: 'default',
 };
 
 export default (state = defaultState, action) => {

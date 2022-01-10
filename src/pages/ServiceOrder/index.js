@@ -1,56 +1,36 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import Card from '@/components/Card';
 import Box from '@/components/Box';
-import Labels from '@/components/Labels';
 import Pie from '@/components/Charts/Pie';
-import { genEquipment2 } from '@/utils/genChartData';
+import { genServiceOrder } from '@/utils/genChartData';
 import styles from './index.scss';
 
-const legends = {
-  PC: {
-    key: 'PC',
-    label: '总行项',
-    type: 'circle',
-    backgroundColor: '#FF8700',
-  },
-  Android: {
-    key: 'Android',
-    label: '已处理行项',
-    type: 'circle',
-    backgroundColor: '#ffc300',
-  },
-  Iphone: {
-    key: 'Iphone',
-    label: '待处理行项',
-    type: 'circle',
-    backgroundColor: '#00e473',
-  },
-};
-
-@connect(({ loan }) => ({
-  loan,
+@connect(({ table, node }) => ({
+  table,
+  node,
 }))
 export default class index extends PureComponent {
   render() {
-    const { loan, header = '客服总览' } = this.props;
-    console.log(this.props);
-    // const { equipment } = loan;
-    const equipment = [
+    const {
+      table: { nodeAllData },
+      node,
+    } = this.props;
+    let curr = nodeAllData[node.text] ? nodeAllData[node.text]['leftTop'] : { data: {} };
+    const dataLeft = curr.data.dataLeft || [
       { name: '总处理行', value: 10211 },
       { name: '已处理行项', value: 6111 },
       { name: '待处理行项', value: 7711 },
     ];
-    const equipment2 = [
+    const dataRight = curr.data.dataRight || [
       { name: '正常行项', value: 10211 },
       { name: '异常行项', value: 6111 },
       { name: '告警行项', value: 7711 },
     ];
-    const equipmentData1 = genEquipment2(equipment, legends);
-    const equipmentData2 = genEquipment2(equipment2, legends);
+    const equipmentData1 = genServiceOrder(dataLeft);
+    const equipmentData2 = genServiceOrder(dataRight);
 
     return (
-      <Box title={header}>
+      <Box title={curr.headerText || '客服概览'}>
         <div className={styles.chartBox}>
           <Pie data={equipmentData1} style={{ height: 250, width: 210 }} />
           <Pie data={equipmentData2} style={{ height: 250, width: 210 }} />
