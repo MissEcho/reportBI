@@ -16,13 +16,13 @@ import Overview from '@/pages/Overview';
 import styles from './index.scss';
 // left-top
 const getLeftTopByNode = node => {
-  const {text} = node;
+  const { text } = node;
   switch (text) {
     case '客户下单':
-      return <ServiceOrder header="客户下单" />;
+      return <ServiceOrder header="客户下单概览" />;
       break;
     case '客户确认':
-      return <ServiceOrder header="客户确认2" />;
+      return <ServiceOrder header="客户确认" />;
       break;
     default:
       return <Service header="客服总览" />;
@@ -31,18 +31,20 @@ const getLeftTopByNode = node => {
 };
 // left-mid
 const getLeftMidByNode = node => {
-  const {text} = node;
+  const { text } = node;
   switch (text) {
     case '客户下单':
-      return <ServiceTrend />;
+      return <ServiceTrend header="客户下单概览" />;
       break;
     default:
       return <Purchase />;
       break;
   }
 };
+
+// left-bottom
 const getLeftBottomByNode = node => {
-  const {text} = node;
+  const { text } = node;
   switch (text) {
     case 'node1':
       return <Source />;
@@ -52,8 +54,9 @@ const getLeftBottomByNode = node => {
       break;
   }
 };
+// center-bottom
 const getCenterBottomByNode = node => {
-  const {text} = node;
+  const { text } = node;
   switch (text) {
     case 'node1':
       return <Abnormal />;
@@ -63,8 +66,9 @@ const getCenterBottomByNode = node => {
       break;
   }
 };
+// right-bottom
 const getRightBottomByNode = node => {
-  const {text} = node;
+  const { text } = node;
   switch (text) {
     case 'node1':
       return <Logistics />;
@@ -74,6 +78,8 @@ const getRightBottomByNode = node => {
       break;
   }
 };
+
+// node-tepe
 const getNodeType = node => {
   const map = {
     客服确认: 'area', // 区域——默认

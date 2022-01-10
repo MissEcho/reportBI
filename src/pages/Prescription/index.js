@@ -144,9 +144,7 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('warehouse') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span />
-              {' '}
-到仓
+              <span /> 到仓
             </div>
             <div
               onClick={() => {
@@ -155,19 +153,25 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('straight') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span />
-              {' '}
-直发
+              <span /> 直发
             </div>
           </div>
         }
         contentClass="tableHeight"
-        // select={<select value={this.state.selectVal} className={styles.select} onChange={e => { this.getSelect(e.target.value) }}>
-        //     <option value='area'>区域维度</option>
-        //     <option value='category'>品类维度</option>
-        //     <option value='office'>分公司维度</option>
-        //     <option value='customer'>核心客户</option>
-        // </select>}
+        select={
+          <select
+            value={this.state.selectVal}
+            className={styles.select}
+            onChange={e => {
+              this.getSelect(e.target.value);
+            }}
+          >
+            <option value="area">区域维度</option>
+            {/* <option value='category'>品类维度</option> */}
+            <option value="office">分公司维度</option>
+            {/* <option value='customer'>核心客户</option> */}
+          </select>
+        }
       >
         <table className={styles.tableBox}>
           <thead className={styles.tableHead}>
@@ -192,10 +196,7 @@ export default class index extends PureComponent {
                 <td>{e.ranking}</td>
                 <td>{e.kpi}</td>
                 <td>{e.month}</td>
-                <td style={{ color: e.growth > 0 ? '#00FF00' : '#ff0000' }}>
-                  {e.growth}
-%
-                </td>
+                <td style={{ color: e.growth > 0 ? '#00FF00' : '#ff0000' }}>{e.growth}%</td>
                 <td>{e.aveYear}</td>
                 <td>{e.target}</td>
               </tr>
