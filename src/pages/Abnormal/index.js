@@ -31,7 +31,7 @@ export default class index extends PureComponent {
             ))}
           </tbody>
         </table>
-        <p style={{ height: '5px' }}></p>
+        <p style={{ height: '5px' }} />
       </Box>
     );
   }

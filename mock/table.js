@@ -12,7 +12,7 @@ module.exports = function table() {
       rightBottom: getRightBottomTable(),
     },
     客户下单: {
-      leftTop: getLeftTopPie('客户下单'), //扇形就用pie
+      leftTop: getLeftTopPie('客户下单'), // 扇形就用pie
       leftMid: getLeftMidLine(),
       leftBottom: getLeftBottomTable(),
       centerBottom: getCenterBottomTable(),
