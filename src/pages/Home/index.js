@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import ReactParticleLine from 'react-particle-line';
 import animate from 'animate.css';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Header from '@/pages/Header';
 import Service from '@/pages/Service';
 import ServiceOrder from '@/pages/ServiceOrder';
@@ -14,18 +13,17 @@ import Abnormal from '@/pages/Abnormal';
 import Prescription from '@/pages/Prescription';
 import Overview from '@/pages/Overview';
 import styles from './index.scss';
-// left-top
-const getLeftTopByNode = node => {
+const { nodeConfig } = require('../../../mock/nodeConfig');
+const getLeftTopByNode = (node, table) => {
   const { text } = node;
-  switch (text) {
-    case '客户下单':
-      return <ServiceOrder />;
+  const config = nodeConfig[text]['leftTop']; //节点的配置
+  const data = table[text]['leftTop']; //数据
+  switch (config.type) {
+    case 'pie':
+      return <ServiceOrder header={config.headerText} data={data} />;
       break;
-    case '客户确认':
-      return <ServiceOrder />;
-      break;
-    case '客户开单':
-      return <ServiceOrder />;
+    case 'table':
+      return <Service header={config.headerText} data={data} columns={config.columns} />;
       break;
     default:
       return <Service header="客服总览" />;
@@ -33,90 +31,102 @@ const getLeftTopByNode = node => {
   }
 };
 // left-mid
-const getLeftMidByNode = node => {
+const getLeftMidByNode = (node, table) => {
   const { text } = node;
-  switch (text) {
-    case '客户下单':
-      return <ServiceTrend />;
+  const config = nodeConfig[text]['leftMid']; //节点的配置
+  const data = table[text]['leftMid']; //数据
+  switch (config.type) {
+    case 'line':
+      return <ServiceTrend header={config.headerText} data={data} />;
+      break;
+    case 'table':
+      return <Purchase header={config.headerText} data={data} columns={config.columns} />;
       break;
     default:
-      return <Purchase />;
+      return <Purchase header="客服总览" />;
       break;
   }
 };
 
 // left-bottom
-const getLeftBottomByNode = node => {
+const getLeftBottomByNode = (node, table) => {
   const { text } = node;
-  switch (text) {
-    case 'node1':
-      return <Source />;
+  const config = nodeConfig[text]['leftBottom']; //节点的配置
+  const data = table[text]['leftBottom']; //数据
+  switch (config.type) {
+    case 'table':
+      return <Source header={config.headerText} data={data} columns={config.columns} />;
       break;
     default:
-      return <Source />;
+      return <Source header={config.headerText} data={data} columns={config.columns} />;
       break;
   }
 };
 // center-bottom
-const getCenterBottomByNode = node => {
+const getCenterBottomByNode = (node, table) => {
   const { text } = node;
-  switch (text) {
-    case 'node1':
-      return <Abnormal />;
+  const config = nodeConfig[text]['centerBottom']; //节点的配置
+  const data = table[text]['centerBottom']; //数据
+  switch (config.type) {
+    case 'table':
+      return <Abnormal header={config.headerText} data={data} />;
       break;
     default:
-      return <Abnormal />;
+      return <Abnormal header={config.headerText} data={data} />;
       break;
   }
 };
 // right-bottom
-const getRightBottomByNode = node => {
+const getRightBottomByNode = (node, table) => {
   const { text } = node;
-  switch (text) {
-    case 'node1':
-      return <Logistics />;
+  const config = nodeConfig[text]['rightBottom']; //节点的配置
+  const data = table[text]['rightBottom']; //数据
+  switch (config.type) {
+    case 'table':
+      return <Logistics header={config.headerText} data={data} columns={config.columns} />;
       break;
     default:
-      return <Logistics />;
+      return <Logistics header={config.headerText} data={data} columns={config.columns} />;
+      break;
+  }
+};
+const getRightTopByNode = (node, table) => {
+  const { text } = node;
+  const config = nodeConfig[text]['rightTop']; //节点的配置
+  const data = table[text]['rightTop']; //数据
+  switch (config.type) {
+    case 'table':
+      return <Prescription header={config.headerText} data={data} columns={config.columns} />;
+      break;
+    default:
+      return <Prescription header={config.headerText} data={data} columns={config.columns} />;
       break;
   }
 };
 
-// node-tepe
-const getNodeType = node => {
-  const map = {
-    客服确认: 'area', // 区域——默认
-    客服开单: 'office', // 分公司
-    采购下单: 'category', // 品类
-    客户下单: 'customer', // 客户组
-  };
-  return map[node.text] || 'area';
-};
-@connect(({ node }) => ({
+@connect(({ node, table }) => ({
   node,
+  table,
 }))
 export default class index extends PureComponent {
   render() {
-    const { node } = this.props;
-    const nodeType = getNodeType(node);
+    const { node, table } = this.props;
+    console.log(node, table);
     return (
       <ReactParticleLine>
         <div className={styles.homeBox}>
           <div className={styles.header}>
-            <Link to="/analysis" title="分析" />
             <Header />
           </div>
-          <div className={styles.topLeft}>{getLeftTopByNode(node)}</div>
-          <div className={styles.topLeftBottom}>{getLeftMidByNode(node)}</div>
+          <div className={styles.topLeft}>{getLeftTopByNode(node, table)}</div>
+          <div className={styles.topLeftBottom}>{getLeftMidByNode(node, table)}</div>
           <div className={`${styles.topCenter} ${animate.animated} ${animate.zoomIn}`}>
             <Overview />
           </div>
-          <div className={styles.topRight}>
-            <Prescription nodeType={nodeType} />
-          </div>
-          <div className={styles.bottomLeft}>{getLeftBottomByNode(node)}</div>
-          <div className={styles.bottomCenter}>{getCenterBottomByNode(node)}</div>
-          <div className={styles.bottomRight}>{getRightBottomByNode(node)}</div>
+          <div className={styles.topRight}>{getRightTopByNode(node, table)}</div>
+          <div className={styles.bottomLeft}>{getLeftBottomByNode(node, table)}</div>
+          <div className={styles.bottomCenter}>{getCenterBottomByNode(node, table)}</div>
+          <div className={styles.bottomRight}>{getRightBottomByNode(node, table)}</div>
         </div>
       </ReactParticleLine>
     );

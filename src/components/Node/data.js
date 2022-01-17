@@ -13,14 +13,14 @@ const node = {
       y: 50,
       label: '客服\n确认',
       name: 'abnormal',
-      text: '客户确认',
+      text: '客服确认',
     },
     {
       id: 'node3',
       x: 180,
       y: 50,
       label: '客服\n开单',
-      text: '客户开单',
+      text: '客服开单',
     },
     {
       id: 'node4',

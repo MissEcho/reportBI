@@ -1,8 +1,7 @@
 import { SAVE_NODE } from '../types';
 
 const defaultState = {
-  type: '',
-  name: '',
+  id: 'node0',
   text: 'default',
 };
 

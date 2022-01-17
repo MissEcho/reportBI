@@ -5,39 +5,6 @@ import Box from '@/components/Box';
 
 import styles from './index.scss';
 
-const columns = [
-  {
-    title: '监控节点',
-    dataIndex: 'nodes',
-    width: 75,
-  },
-  {
-    title: '总行项数',
-    dataIndex: 'amount',
-    width: 70,
-  },
-  {
-    title: '告警行项',
-    dataIndex: 'alarmAmount',
-    width: 65,
-  },
-  {
-    title: '异常行项',
-    dataIndex: 'abnormalAmount',
-    width: 65,
-  },
-  {
-    title: '正常行项',
-    dataIndex: 'normalAmount',
-    width: 70,
-  },
-  {
-    title: '异常率',
-    dataIndex: 'untreatedAbnormalFee',
-    width: 60,
-  },
-];
-
 @connect(({ table }) => ({
   table,
 }))
@@ -50,10 +17,10 @@ export default class index extends PureComponent {
   // }
 
   render() {
-    const { table } = this.props;
-    const business = table.service;
+    const { header, data, columns } = this.props;
+    const business = data;
     return (
-      <Box title="采购总览">
+      <Box title={header}>
         <table className={styles.tableBox}>
           <thead className={styles.tableHead}>
             <tr>

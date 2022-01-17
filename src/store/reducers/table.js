@@ -20,6 +20,14 @@ const defaultState = {
     office: {},
     customer: {},
   },
+  default: {
+    leftTop: [],
+    leftMid: [],
+    leftBottom: [],
+    centerBottom: [],
+    rightTop: [],
+    rightBottom: [],
+  },
 };
 
 export default (state = defaultState, action) => {
