@@ -12,6 +12,11 @@ module.exports = {
     // 输出目录
     path: path.resolve(__dirname, '../dist'),
   },
+  externals: {
+    // 左边,是应该剔除的包名;右边,是通过cdn加载的全局包名
+    'echarts': 'echarts',
+    '@antv/g6': 'G6',
+  },
   module: {
     rules: [
       // {
