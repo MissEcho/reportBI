@@ -360,7 +360,38 @@ export const nodeConfig = {
     rightTop: {
       headerText: '分公司确认时效排行榜',
       type: 'table',
-      columns: [],
+      columns: [
+        {
+          title: '排名',
+          dataIndex: 'ranking',
+          width: 75,
+        },
+        {
+          title: '指标名称',
+          dataIndex: 'classify',
+          width: 70,
+        },
+        {
+          title: '7月份',
+          dataIndex: 'month',
+          width: 65,
+        },
+        {
+          title: '月同比',
+          dataIndex: 'growth',
+          width: 65,
+        },
+        {
+          title: '年平均',
+          dataIndex: 'aveYear',
+          width: 70,
+        },
+        {
+          title: '目标值',
+          dataIndex: 'target',
+          width: 60,
+        },
+      ],
     },
     rightBottom: {
       headerText: '核心客户确认数据',
@@ -912,7 +943,38 @@ export const nodeConfig = {
     rightTop: {
       headerText: '品类寻源排行榜',
       type: 'table',
-      columns: [],
+      columns: [
+        {
+          title: '品类名称',
+          dataIndex: 'ranking',
+          width: 75,
+        },
+        {
+          title: '总行数',
+          dataIndex: 'classify',
+          width: 70,
+        },
+        {
+          title: '待采购行数',
+          dataIndex: 'month',
+          width: 65,
+        },
+        {
+          title: '下单时效',
+          dataIndex: 'growth',
+          width: 65,
+        },
+        {
+          title: '超时行项',
+          dataIndex: 'aveYear',
+          width: 70,
+        },
+        {
+          title: '超时率',
+          dataIndex: 'target',
+          width: 60,
+        },
+      ],
     },
     rightBottom: {
       headerText: '供应商拒单排行榜',
@@ -965,7 +1027,7 @@ export const nodeConfig = {
       type: 'table',
       columns: [
         {
-          title: '监控节点',
+          title: '姓名',
           dataIndex: 'nodes',
           width: 75,
         },
@@ -975,7 +1037,7 @@ export const nodeConfig = {
           width: 70,
         },
         {
-          title: '告警行项',
+          title: '待采购行项',
           dataIndex: 'alarmAmount',
           width: 65,
         },
@@ -985,7 +1047,7 @@ export const nodeConfig = {
           width: 65,
         },
         {
-          title: '正常行项',
+          title: '平均下单时效',
           dataIndex: 'normalAmount',
           width: 70,
         },
@@ -1004,7 +1066,38 @@ export const nodeConfig = {
     rightTop: {
       headerText: '品类采购下单排行榜',
       type: 'table',
-      columns: [],
+      columns: [
+        {
+          title: '品类名称',
+          dataIndex: 'ranking',
+          width: 75,
+        },
+        {
+          title: '总行数',
+          dataIndex: 'TotalLineItem',
+          width: 70,
+        },
+        {
+          title: '待采购行数',
+          dataIndex: 'month',
+          width: 65,
+        },
+        {
+          title: '下单时效(h)',
+          dataIndex: 'growth',
+          width: 65,
+        },
+        {
+          title: '超时行项',
+          dataIndex: 'aveYear',
+          width: 70,
+        },
+        {
+          title: '超时率',
+          dataIndex: 'target',
+          width: 60,
+        },
+      ],
     },
     rightBottom: {
       headerText: '供应商下单排行榜',
@@ -1096,7 +1189,38 @@ export const nodeConfig = {
     rightTop: {
       headerText: '供应商接单排行榜',
       type: 'table',
-      columns: [],
+      columns: [
+        {
+          title: '供应商名称',
+          dataIndex: 'ranking',
+          width: 75,
+        },
+        {
+          title: '总采购单数',
+          dataIndex: 'classify',
+          width: 70,
+        },
+        {
+          title: '待接单数',
+          dataIndex: 'month',
+          width: 65,
+        },
+        {
+          title: '接单时效',
+          dataIndex: 'growth',
+          width: 65,
+        },
+        {
+          title: '超时未接单数',
+          dataIndex: 'aveYear',
+          width: 70,
+        },
+        {
+          title: '超时率',
+          dataIndex: 'target',
+          width: 60,
+        },
+      ],
     },
     rightBottom: {
       headerText: '品类接单排行榜',
@@ -1188,7 +1312,38 @@ export const nodeConfig = {
     rightTop: {
       headerText: '供应商发货排行榜',
       type: 'table',
-      columns: [],
+      columns: [
+        {
+          title: '供应商名称',
+          dataIndex: 'ranking',
+          width: 75,
+        },
+        {
+          title: '总发货行数',
+          dataIndex: 'classify',
+          width: 70,
+        },
+        {
+          title: '待发货行数',
+          dataIndex: 'month',
+          width: 65,
+        },
+        {
+          title: '发货时效',
+          dataIndex: 'growth',
+          width: 65,
+        },
+        {
+          title: '超时行项',
+          dataIndex: 'aveYear',
+          width: 70,
+        },
+        {
+          title: '超时率',
+          dataIndex: 'target',
+          width: 60,
+        },
+      ],
     },
     rightBottom: {
       headerText: '品类发货排行榜',

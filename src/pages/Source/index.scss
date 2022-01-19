@@ -21,24 +21,24 @@
       // border-top: 1px solid rgba(83, 179, 228, 0.3);
       // border-bottom: 1px solid rgba(83, 179, 228, 0.3);
     }
-
+    // 这是标题的颜色
     &>tr>th {
       &:nth-child(1) {
         color: #9966FF;
       }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
+      // &:nth-child(3),
+      // &:nth-child(6) {
+      //   color: #FF0000;
+      // }
 
-      &:nth-child(4) {
-        color: #FFCC00;
-      }
+      // &:nth-child(4) {
+      //   color: #FFCC00;
+      // }
 
-      &:nth-child(5) {
-        color: #00FF00;
-      }
+      // &:nth-child(5) {
+      //   color: #00FF00;
+      // }
     }
   }
 
@@ -46,24 +46,25 @@
     font-size: 12px;
 
     &>tr>td {
+      // nth-child 后面的序号，代表第几列，第一列：紫色
       &:nth-child(1) {
         color: #9966FF;
       }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
+      // &:nth-child(3),
+      // &:nth-child(6) {
+      //   color: #FF0000;
+      // }
 
-      &:nth-child(4) {
-        color: #FFCC00;
-      }
+      // &:nth-child(4) {
+      //   color: #FFCC00;
+      // }
 
-      &:nth-child(5) {
-        color: #00FF00;
-      }
+      // &:nth-child(5) {
+      //   color: #00FF00;
+      // }
     }
-
+    // 默认是白色
     &>tr>td {
       color: #fff;
       line-height: 40px;

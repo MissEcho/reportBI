@@ -16,7 +16,7 @@ module.exports = function table() {
       leftMid: getLeftMidLine(),
       leftBottom: getLeftBottomTable(),
       centerBottom: getCenterBottomTable(),
-      rightTop: getRightTopTable(),
+      rightTop: getRightTopTable('客户下单'),
       rightBottom: getRightBottomTable(),
     },
     客服确认: {
@@ -80,7 +80,7 @@ module.exports = function table() {
       leftMid: getLeftMidLine(),
       leftBottom: getLeftBottomTable(),
       centerBottom: getCenterBottomTable(),
-      rightTop: getRightTopTable(),
+      rightTop: getRightTopTable('采购下单'),
       rightBottom: getRightBottomTable(),
     },
     供应商接单: {
@@ -178,14 +178,14 @@ function getLeftTopTable() {
   });
   return data;
 }
-function getLeftTopPie(type) {
+function getLeftTopPie(text) {
   const nums = Mock.mock({
     'num1|200-300': 1, // 生成200到300之间的数字
     'num2|200-300': 1,
   });
   nums.num3 = nums.num1 + nums.num2;
   let data = {};
-  switch (type) {
+  switch (text) {
     case '客户下单':
       data = {
         dataLeft: [
@@ -200,12 +200,12 @@ function getLeftTopPie(type) {
         ],
       };
       break;
-    case '客服下单':
+    case '采购下单':
       data = {
         dataLeft: [
-          { name: '总处理行', value: nums.num3 },
-          { name: '已处理行项', value: nums.num2 },
-          { name: '待处理行项', value: nums.num1 },
+          { name: '总获取行项', value: nums.num3 },
+          { name: '待采购行项', value: nums.num2 },
+          { name: '已采购行项', value: nums.num1 },
         ],
         dataRight: [
           { name: '正常行项', value: nums.num3 },
@@ -440,73 +440,279 @@ function getCenterBottomTable() {
   ];
 }
 
-function getRightTopTable() {
-  return [
-    {
-      ranking: 'TOP1',
-      kpi: '华东',
-      month: '61%',
-      growth: 3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP2',
-      kpi: '华北',
-      month: '61%',
-      growth: -3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP3',
-      kpi: '华中',
-      month: '61%',
-      growth: 3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP4',
-      kpi: '东北',
-      month: '61%',
-      growth: -3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP5',
-      kpi: '西北',
-      month: '61%',
-      growth: 3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP6',
-      kpi: '西南',
-      month: '61%',
-      growth: -3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP7',
-      kpi: '华南',
-      month: '61%',
-      growth: 3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-    {
-      ranking: 'TOP8',
-      kpi: '新疆',
-      month: '61%',
-      growth: -3.6,
-      aveYear: '982',
-      target: '75%',
-    },
-  ];
+function getRightTopTable(text) {
+  let data=[]
+  switch (text) {
+    case '客户下单':
+      data = [
+        {
+          ranking: 'TOP1',
+          kpi: '华东',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP2',
+          kpi: '华北',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP3',
+          kpi: '华中',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP4',
+          kpi: '东北',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP5',
+          kpi: '西北',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP6',
+          kpi: '西南',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP7',
+          kpi: '华南',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP8',
+          kpi: '新疆',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+      ];
+      break;
+    case '采购下单':
+      data = [
+        {
+          ranking: '家居家纺',
+          kpi: 9019,
+          month: 8710,
+          growth: 6.98,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP2',
+          kpi: '办公家具',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP3',
+          kpi: '办公文具',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP4',
+          kpi: '办公用纸',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP5',
+          kpi: '电脑数码',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP6',
+          kpi: '其他设备耗材',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP7',
+          kpi: '惠普设备耗材',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP8',
+          kpi: '电器通讯',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP9',
+          kpi: '食品饮料',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP10',
+          kpi: '消费品',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP11',
+          kpi: '安防',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP12',
+          kpi: '电气',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP13',
+          kpi: '工具',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP14',
+          kpi: '化学存储',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP15',
+          kpi: '机械流体',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP16',
+          kpi: '仪器仪表',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+      ];
+      break;
+    default:
+      data = [
+        {
+          ranking: 'TOP1',
+          kpi: '华东',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP2',
+          kpi: '华北',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP3',
+          kpi: '华中',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP4',
+          kpi: '东北',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP5',
+          kpi: '西北',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP6',
+          kpi: '西南',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP7',
+          kpi: '华南',
+          month: '61%',
+          growth: 3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+        {
+          ranking: 'TOP8',
+          kpi: '新疆',
+          month: '61%',
+          growth: -3.6,
+          aveYear: '982',
+          target: '75%',
+        },
+      ];
+      break;
+  }
+  return data;
 }
 
 function getRightBottomTable() {
