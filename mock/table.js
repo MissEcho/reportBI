@@ -311,60 +311,34 @@ function getLeftMidLine() {
     ],
   };
 }
-function getLeftBottomTable(text) {
-  let data = [];
+
+const _getLeftBottomTableData = item => {
   const lines = Mock.mock({
     'line1|200-300': 1, // 待采购行项
     'line2|200-300': 1, // 已采购行项
-    'line3|100-200': 1, // 超时行项
-    'line4|1-200': 0.23, // 下单时效
+    'line3|100-400': 1, // 超时行项
+    'line4|1-100.2-2': 1, // 下单时效
   });
   lines.total = lines.line1 + lines.line2;
-  lines.rate = `${(lines.line3 / lines.total).toFixed(2) * 100}%`;
+  lines.rate = parseInt((lines.line3 / lines.total).toFixed(2) * 100);
+  return {
+    nodes: item, // 姓名
+    amount: lines.total, // 总行项
+    alarmAmount: lines.line1, // 待采购行项
+    abnormalAmount: lines.line3, // 超时行项
+    normalAmount: lines.line4, // 下单时效
+    untreatedAbnormalFee: lines.rate, // 异常率
+  };
+};
+function getLeftBottomTable(text) {
+  let data = [];
+
   switch (text) {
     case '采购下单':
-      data = [
-        {
-          nodes: '张飒', // 姓名
-          amount: lines.total, // 总行项
-          alarmAmount: lines.line1, // 待采购行项
-          abnormalAmount: lines.line3, // 超时行项
-          normalAmount: lines.line4, // 下单时效
-          untreatedAbnormalFee: lines.rate, // 异常率
-        },
-        {
-          nodes: '徐英瑶',
-          amount: lines.total, // 总行项
-          alarmAmount: lines.line1, // 待采购行项
-          abnormalAmount: lines.line3, // 超时行项
-          normalAmount: lines.line4, // 下单时效
-          untreatedAbnormalFee: lines.rate, // 异常率
-        },
-        {
-          nodes: '查瑶',
-          amount: lines.total, // 总行项
-          alarmAmount: lines.line1, // 待采购行项
-          abnormalAmount: lines.line3, // 超时行项
-          normalAmount: lines.line4, // 下单时效
-          untreatedAbnormalFee: lines.rate, // 异常率
-        },
-        {
-          nodes: '应泽峰',
-          amount: lines.total, // 总行项
-          alarmAmount: lines.line1, // 待采购行项
-          abnormalAmount: lines.line3, // 超时行项
-          normalAmount: lines.line4, // 下单时效
-          untreatedAbnormalFee: lines.rate, // 异常率
-        },
-        {
-          nodes: '姜莹',
-          amount: lines.total, // 总行项
-          alarmAmount: lines.line1, // 待采购行项
-          abnormalAmount: lines.line3, // 超时行项
-          normalAmount: lines.line4, // 下单时效
-          untreatedAbnormalFee: lines.rate, // 异常率
-        },
-      ];
+      const arr = ['杨晓玲','徐英瑶','查瑶','应泽枫','姜莹'];
+      for (let i = 0;i < arr.length; i++){
+        data.push(_getLeftBottomTableData(arr[i]));
+      }
       break;
     default:
       data = [
@@ -496,12 +470,13 @@ function getCenterBottomTable() {
     },
   ];
 }
+
 const _getRightTopTableData = item => {
   const lines = Mock.mock({
     'line1|200-300': 1, // 待采购行项
     'line2|200-300': 1, // 已采购行项
     'line3|100-400': 1, // 超时行项
-    'line4|1-200.2-2': 1, // 下单时效
+    'line4|1-100.2-2': 1, // 下单时效
   });
   lines.total = lines.line1 + lines.line2;
   lines.rate = parseInt((lines.line3 / lines.total).toFixed(2) * 100);

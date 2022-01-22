@@ -43,8 +43,16 @@ export default class index extends PureComponent {
                 <td>{e.amount}</td>
                 <td>{e.alarmAmount}</td>
                 <td>{e.abnormalAmount}</td>
-                <td>{e.normalAmount}</td>
-                <td>{e.untreatedAbnormalFee}</td>
+                <td
+                  style={{
+                    color: `${e.normalAmount > 70 ? '#ff0000' : e.normalAmount > 40 ? '#ffcc00' : '#ffffff'}`,
+                  }}
+                >{e.normalAmount}</td>
+                <td
+                  style={{
+                    color: `${e.untreatedAbnormalFee > 70 ? '#ff0000' : e.untreatedAbnormalFee > 40 ? '#ffcc00' : '#ffffff'}`,
+                  }}
+                >{e.untreatedAbnormalFee}%</td>
               </tr>
             ))}
           </tbody>

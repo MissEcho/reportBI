@@ -115,7 +115,11 @@ export default class index extends PureComponent {
                 <td>{e.ranking}</td>
                 <td>{e.kpi}</td>
                 <td>{e.month}</td>
-                <td>{e.growth}</td>
+                <td
+                  style={{
+                    color: `${e.growth > 70 ? '#ff0000' : e.growth > 40 ? '#ffcc00' : '#ffffff'}`,
+                  }}
+                >{e.growth}</td>
                 <td>{e.aveYear}</td>
                 <td
                   style={{
