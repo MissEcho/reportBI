@@ -78,10 +78,10 @@ module.exports = function table() {
     采购下单: {
       leftTop: getLeftTopPie(),
       leftMid: getLeftMidLine(),
-      leftBottom: getLeftBottomTable(),
-      centerBottom: getCenterBottomTable(),
+      leftBottom: getLeftBottomTable('采购下单'),
+      centerBottom: getCenterBottomTable('采购下单'),
       rightTop: getRightTopTable('采购下单'),
-      rightBottom: getRightBottomTable(),
+      rightBottom: getRightBottomTable('采购下单'),
     },
     供应商接单: {
       leftTop: getLeftTopPie(),
@@ -311,49 +311,106 @@ function getLeftMidLine() {
     ],
   };
 }
-function getLeftBottomTable() {
-  return [
-    {
-      nodes: '待处理总行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待寻源行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待维护行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待换货行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待换货行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-  ];
+function getLeftBottomTable(text) {
+  let data = [];
+  const lines = Mock.mock({
+    'line1|200-300': 1, // 待采购行项
+    'line2|200-300': 1, //已采购行项
+    'line3|100-200': 1, //超时行项
+    'line4|1-200': 0.23, //下单时效
+  });
+  lines.total = lines.line1 + lines.line2;
+  lines.rate = (lines.line3 / lines.total).toFixed(2) * 100 + '%';
+  switch (text) {
+    case '采购下单':
+      data = [
+        {
+          nodes: '张飒', //姓名
+          amount: lines.total, //总行项
+          alarmAmount: lines.line1, //待采购行项
+          abnormalAmount: lines.line3, //超时行项
+          normalAmount: lines.line4, //下单时效
+          untreatedAbnormalFee: lines.rate, //异常率
+        },
+        {
+          nodes: '徐英瑶',
+          amount: lines.total, //总行项
+          alarmAmount: lines.line1, //待采购行项
+          abnormalAmount: lines.line3, //超时行项
+          normalAmount: lines.line4, //下单时效
+          untreatedAbnormalFee: lines.rate, //异常率
+        },
+        {
+          nodes: '查瑶',
+          amount: lines.total, //总行项
+          alarmAmount: lines.line1, //待采购行项
+          abnormalAmount: lines.line3, //超时行项
+          normalAmount: lines.line4, //下单时效
+          untreatedAbnormalFee: lines.rate, //异常率
+        },
+        {
+          nodes: '应泽峰',
+          amount: lines.total, //总行项
+          alarmAmount: lines.line1, //待采购行项
+          abnormalAmount: lines.line3, //超时行项
+          normalAmount: lines.line4, //下单时效
+          untreatedAbnormalFee: lines.rate, //异常率
+        },
+        {
+          nodes: '姜莹',
+          amount: lines.total, //总行项
+          alarmAmount: lines.line1, //待采购行项
+          abnormalAmount: lines.line3, //超时行项
+          normalAmount: lines.line4, //下单时效
+          untreatedAbnormalFee: lines.rate, //异常率
+        },
+      ];
+      break;
+    default:
+      data = [
+        {
+          nodes: '待处理总行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待寻源行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待维护行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待换货行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待换货行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+      ];
+  }
+  return data;
 }
 function getCenterBottomTable() {
   return [
@@ -441,7 +498,15 @@ function getCenterBottomTable() {
 }
 
 function getRightTopTable(text) {
-  let data=[]
+  let data = [];
+  const lines = Mock.mock({
+    'line1|200-300': 1, // 待采购行项
+    'line2|200-300': 1, //已采购行项
+    'line3|100-200': 1, //超时行项
+    'line4|1-200': 0.23, //超时行项
+  });
+  lines.total = lines.line1 + lines.line2;
+  lines.rate = (lines.line3 / lines.total).toFixed(2) * 100;
   switch (text) {
     case '客户下单':
       data = [
@@ -514,132 +579,132 @@ function getRightTopTable(text) {
     case '采购下单':
       data = [
         {
-          ranking: '家居家纺',
-          kpi: 9019,
-          month: 8710,
-          growth: 6.98,
-          aveYear: '982',
-          target: '75%',
+          ranking: '家居家纺', //品类名称
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP2',
-          kpi: '办公家具',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '办公家具',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP3',
-          kpi: '办公文具',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '办公文具',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP4',
-          kpi: '办公用纸',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '办公用纸',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP5',
-          kpi: '电脑数码',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '电脑数码',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP6',
-          kpi: '其他设备耗材',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '其他设备耗材',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP7',
-          kpi: '惠普设备耗材',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '惠普设备耗材',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP8',
-          kpi: '电器通讯',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '电器通讯',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP9',
-          kpi: '食品饮料',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '食品饮料',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP10',
-          kpi: '消费品',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '消费品',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP11',
-          kpi: '安防',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '安防',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP12',
-          kpi: '电气',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '电气',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP13',
-          kpi: '工具',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '工具',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP14',
-          kpi: '化学存储',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '化学存储',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP15',
-          kpi: '机械流体',
-          month: '61%',
-          growth: -3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '机械流体',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
         {
-          ranking: 'TOP16',
-          kpi: '仪器仪表',
-          month: '61%',
-          growth: 3.6,
-          aveYear: '982',
-          target: '75%',
+          ranking: '仪器仪表',
+          kpi: lines.total, //总行项
+          month: lines.line1, //待采购行项.
+          growth: lines.line4, //下单时效
+          aveYear: lines.line3, //超时行项
+          target: lines.rate, //超时率
         },
       ];
       break;
@@ -715,47 +780,104 @@ function getRightTopTable(text) {
   return data;
 }
 
-function getRightBottomTable() {
-  return [
-    {
-      nodes: '待处理总行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待入库行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待发货行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待妥投行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-    {
-      nodes: '待妥投行项',
-      amount: '10392',
-      alarmAmount: '780',
-      abnormalAmount: '982',
-      normalAmount: '8630',
-      untreatedAbnormalFee: '16.69%',
-    },
-  ];
+function getRightBottomTable(text) {
+  let data = [];
+  const lines = Mock.mock({
+    'line1|200-300': 1, // 待采购行项
+    'line2|200-300': 1, //已采购行项
+    'line3|100-200': 1, //超时行项
+    'line4|1-200': 0.23, //下单时效
+  });
+  lines.total = lines.line1 + lines.line2;
+  lines.rate = (lines.line3 / lines.total).toFixed(2) * 100 + '%';
+  switch (text) {
+    case '采购下单':
+      data = [
+        {
+          nodes: '客户订单信息确认中', //未采购原因
+          amount: lines.total, //未采购行项
+          alarmAmount: lines.line1, //未采购率
+          abnormalAmount: lines.line3, //紧急程度
+          // normalAmount: lines.line4,//下单时效
+          // untreatedAbnormalFee: lines.rate,//异常率
+        },
+        {
+          nodes: '次日可完成下单', //未采购原因
+          amount: lines.total, //未采购行项
+          alarmAmount: lines.line1, //未采购率
+          abnormalAmount: lines.line3, //紧急程度
+          // normalAmount: lines.line4,//下单时效
+          // untreatedAbnormalFee: lines.rate,//异常率
+        },
+        {
+          nodes: '客户不接受替换方案，原单寻源中', //未采购原因
+          amount: lines.total, //未采购行项
+          alarmAmount: lines.line1, //未采购率
+          abnormalAmount: lines.line3, //紧急程度
+          // normalAmount: lines.line4,//下单时效
+          // untreatedAbnormalFee: lines.rate,//异常率
+        },
+        {
+          nodes: '已提供停产/缺货证明，客户沟通中', //未采购原因
+          amount: lines.total, //未采购行项
+          alarmAmount: lines.line1, //未采购率
+          abnormalAmount: lines.line3, //紧急程度
+          // normalAmount: lines.line4,//下单时效
+          // untreatedAbnormalFee: lines.rate,//异常率
+        },
+        {
+          nodes: '无替换方案，需重新寻源', //未采购原因
+          amount: lines.total, //未采购行项
+          alarmAmount: lines.line1, //未采购率
+          abnormalAmount: lines.line3, //紧急程度
+          // normalAmount: lines.line4,//下单时效
+          // untreatedAbnormalFee: lines.rate,//异常率
+        },
+      ];
+      break;
+    default:
+      data = [
+        {
+          nodes: '待处理总行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待寻源行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待维护行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待换货行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+        {
+          nodes: '待换货行项',
+          amount: '10392',
+          alarmAmount: '780',
+          abnormalAmount: '982',
+          normalAmount: '8630',
+          untreatedAbnormalFee: '16.69%',
+        },
+      ];
+  }
+  return data;
 }

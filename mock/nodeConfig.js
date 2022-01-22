@@ -1047,7 +1047,7 @@ export const nodeConfig = {
           width: 65,
         },
         {
-          title: '平均下单时效',
+          title: '下单时效(h)',
           dataIndex: 'normalAmount',
           width: 70,
         },
@@ -1100,39 +1100,39 @@ export const nodeConfig = {
       ],
     },
     rightBottom: {
-      headerText: '供应商下单排行榜',
+      headerText: '未采购原因',
       type: 'table',
       columns: [
         {
-          title: '监控节点',
+          title: '未采购原因',
           dataIndex: 'nodes',
-          width: 75,
+          width: 241,
         },
         {
-          title: '总行项数',
+          title: '未采购行项',
           dataIndex: 'amount',
-          width: 70,
-        },
-        {
-          title: '告警行项',
-          dataIndex: 'alarmAmount',
-          width: 65,
-        },
-        {
-          title: '异常行项',
-          dataIndex: 'abnormalAmount',
-          width: 65,
-        },
-        {
-          title: '正常行项',
-          dataIndex: 'normalAmount',
-          width: 70,
-        },
-        {
-          title: '异常率',
-          dataIndex: 'untreatedAbnormalFee',
           width: 60,
         },
+        {
+          title: '未采购占比',
+          dataIndex: 'alarmAmount',
+          width: 60,
+        },
+        {
+          title: '警告程度',
+          dataIndex: 'abnormalAmount',
+          width: 52,
+        },
+        // {
+        //   title: '接单时效(h)',
+        //   dataIndex: 'normalAmount',
+        //   width: 60,
+        // },
+        // {
+        //   title: '异常率',
+        //   dataIndex: 'untreatedAbnormalFee',
+        //   width: 44,
+        // },
       ],
     },
   },

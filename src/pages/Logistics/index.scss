@@ -13,7 +13,7 @@
   overflow: hidden;
 
   .tableHead {
-    &>tr>th {
+    & > tr > th {
       // color: #53b3e4;
       font-size: 12px;
       font-weight: bold;
@@ -22,49 +22,49 @@
       // border-bottom: 1px solid rgba(83, 179, 228, 0.3);
     }
 
-    &>tr>th {
+    & > tr > th {
       &:nth-child(1) {
-        color: #9966FF;
+        color: #9966ff;
       }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
+      // &:nth-child(3),
+      // &:nth-child(6) {
+      //   color: #FF0000;
+      // }
 
-      &:nth-child(4) {
-        color: #FFCC00;
-      }
+      // &:nth-child(4) {
+      //   color: #FFCC00;
+      // }
 
-      &:nth-child(5) {
-        color: #00FF00;
-      }
+      // &:nth-child(5) {
+      //   color: #00FF00;
+      // }
     }
   }
 
   .tableBody {
     font-size: 12px;
 
-    &>tr>td {
+    & > tr > td {
       &:nth-child(1) {
-        color: #9966FF;
+        color: #9966ff;
       }
 
-      &:nth-child(3),
-      &:nth-child(6) {
-        color: #FF0000;
-      }
+      // &:nth-child(3),
+      // &:nth-child(6) {
+      //   color: #FF0000;
+      // }
 
-      &:nth-child(4) {
-        color: #FFCC00;
-      }
+      // &:nth-child(4) {
+      //   color: #FFCC00;
+      // }
 
-      &:nth-child(5) {
-        color: #00FF00;
-      }
+      // &:nth-child(5) {
+      //   color: #00FF00;
+      // }
     }
 
-    &>tr>td {
+    & > tr > td {
       color: #fff;
       line-height: 40px;
 
