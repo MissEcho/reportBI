@@ -496,17 +496,27 @@ function getCenterBottomTable() {
     },
   ];
 }
-
-function getRightTopTable(text) {
-  let data = [];
+const _getRightTopTableData = item => {
   const lines = Mock.mock({
     'line1|200-300': 1, // 待采购行项
     'line2|200-300': 1, // 已采购行项
-    'line3|100-200': 1, // 超时行项
-    'line4|1-200': 0.23, // 超时行项
+    'line3|100-400': 1, // 超时行项
+    'line4|1-200.2-2': 1, // 下单时效
   });
   lines.total = lines.line1 + lines.line2;
-  lines.rate = (lines.line3 / lines.total).toFixed(2) * 100;
+  lines.rate = parseInt((lines.line3 / lines.total).toFixed(2) * 100);
+
+  return {
+    ranking: item, // 品类名称
+    kpi: lines.total, // 总行项
+    month: lines.line1, // 待采购行项.
+    growth: lines.line4, // 下单时效
+    aveYear: lines.line3, // 超时行项
+    target: lines.rate, // 超时率
+  };
+};
+function getRightTopTable(text) {
+  let data = [];
   switch (text) {
     case '客户下单':
       data = [
@@ -577,136 +587,26 @@ function getRightTopTable(text) {
       ];
       break;
     case '采购下单':
-      data = [
-        {
-          ranking: '家居家纺', // 品类名称
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '办公家具',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '办公文具',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '办公用纸',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '电脑数码',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '其他设备耗材',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '惠普设备耗材',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '电器通讯',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '食品饮料',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '消费品',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '安防',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '电气',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '工具',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '化学存储',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '机械流体',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
-        {
-          ranking: '仪器仪表',
-          kpi: lines.total, // 总行项
-          month: lines.line1, // 待采购行项.
-          growth: lines.line4, // 下单时效
-          aveYear: lines.line3, // 超时行项
-          target: lines.rate, // 超时率
-        },
+      let arr = [
+        '家居家纺',
+        '办公家具',
+        '办公文具',
+        '办公用纸',
+        '电脑数码',
+        '其他设备耗材',
+        '电器通讯',
+        '食品饮料',
+        '消费品',
+        '安防',
+        '电气',
+        '工具',
+        '化学存储',
+        '机械流体',
+        '仪器仪表',
       ];
+      for (let i = 0; i < arr.length; i++) {
+        data.push(_getRightTopTableData(arr[i]));
+      }
       break;
     default:
       data = [
@@ -798,40 +698,40 @@ function getRightBottomTable(text) {
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          // normalAmount: lines.line4,//下单时效
-          // untreatedAbnormalFee: lines.rate,//异常率
+          normalAmount: null, //下单时效
+          untreatedAbnormalFee: null, //异常率
         },
         {
           nodes: '次日可完成下单', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          // normalAmount: lines.line4,//下单时效
-          // untreatedAbnormalFee: lines.rate,//异常率
+          normalAmount: null, //下单时效
+          untreatedAbnormalFee: null, //异常率
         },
         {
           nodes: '客户不接受替换方案，原单寻源中', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          // normalAmount: lines.line4,//下单时效
-          // untreatedAbnormalFee: lines.rate,//异常率
+          normalAmount: null, //下单时效
+          untreatedAbnormalFee: null, //异常率
         },
         {
           nodes: '已提供停产/缺货证明，客户沟通中', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          // normalAmount: lines.line4,//下单时效
-          // untreatedAbnormalFee: lines.rate,//异常率
+          normalAmount: null, //下单时效
+          untreatedAbnormalFee: null, //异常率
         },
         {
           nodes: '无替换方案，需重新寻源', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          // normalAmount: lines.line4,//下单时效
-          // untreatedAbnormalFee: lines.rate,//异常率
+          normalAmount: null, //下单时效
+          untreatedAbnormalFee: null, //异常率
         },
       ];
       break;

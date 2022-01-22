@@ -1106,33 +1106,23 @@ export const nodeConfig = {
         {
           title: '未采购原因',
           dataIndex: 'nodes',
-          width: 241,
+          width: 200,
         },
         {
           title: '未采购行项',
           dataIndex: 'amount',
-          width: 60,
+          width: 70,
         },
         {
           title: '未采购占比',
           dataIndex: 'alarmAmount',
-          width: 60,
+          width: 70,
         },
         {
           title: '警告程度',
           dataIndex: 'abnormalAmount',
-          width: 52,
+          width: 70,
         },
-        // {
-        //   title: '接单时效(h)',
-        //   dataIndex: 'normalAmount',
-        //   width: 60,
-        // },
-        // {
-        //   title: '异常率',
-        //   dataIndex: 'untreatedAbnormalFee',
-        //   width: 44,
-        // },
       ],
     },
   },
