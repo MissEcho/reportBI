@@ -59,7 +59,9 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('warehouse') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span /> 到仓
+              <span />
+              {' '}
+到仓
             </div>
             <div
               onClick={() => {
@@ -68,7 +70,9 @@ export default class index extends PureComponent {
               className={`${flow.indexOf('straight') > -1 ? styles.active : ''}`}
             >
               {' '}
-              <span /> 直发
+              <span />
+              {' '}
+直发
             </div>
           </div>
         }
@@ -118,7 +122,8 @@ export default class index extends PureComponent {
                     color: `${e.target > 70 ? '#ff0000' : e.target > 40 ? '#ffcc00' : '#ffffff'}`,
                   }}
                 >
-                  {e.target}%
+                  {e.target}
+%
                 </td>
               </tr>
             ))}

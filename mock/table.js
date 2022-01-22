@@ -587,7 +587,7 @@ function getRightTopTable(text) {
       ];
       break;
     case '采购下单':
-      let arr = [
+      const arr = [
         '家居家纺',
         '办公家具',
         '办公文具',
@@ -698,40 +698,40 @@ function getRightBottomTable(text) {
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          normalAmount: null, //下单时效
-          untreatedAbnormalFee: null, //异常率
+          normalAmount: null, // 下单时效
+          untreatedAbnormalFee: null, // 异常率
         },
         {
           nodes: '次日可完成下单', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          normalAmount: null, //下单时效
-          untreatedAbnormalFee: null, //异常率
+          normalAmount: null, // 下单时效
+          untreatedAbnormalFee: null, // 异常率
         },
         {
           nodes: '客户不接受替换方案，原单寻源中', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          normalAmount: null, //下单时效
-          untreatedAbnormalFee: null, //异常率
+          normalAmount: null, // 下单时效
+          untreatedAbnormalFee: null, // 异常率
         },
         {
           nodes: '已提供停产/缺货证明，客户沟通中', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          normalAmount: null, //下单时效
-          untreatedAbnormalFee: null, //异常率
+          normalAmount: null, // 下单时效
+          untreatedAbnormalFee: null, // 异常率
         },
         {
           nodes: '无替换方案，需重新寻源', // 未采购原因
           amount: lines.total, // 未采购行项
           alarmAmount: lines.line1, // 未采购率
           abnormalAmount: lines.line3, // 紧急程度
-          normalAmount: null, //下单时效
-          untreatedAbnormalFee: null, //异常率
+          normalAmount: null, // 下单时效
+          untreatedAbnormalFee: null, // 异常率
         },
       ];
       break;
