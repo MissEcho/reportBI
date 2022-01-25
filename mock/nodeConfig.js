@@ -114,72 +114,72 @@ export const nodeConfig = {
       type: 'table',
     },
     rightTop: {
-      headerText: '交付时效排行榜',
+      headerText: '分公司销售排行榜',
       type: 'table',
       columns: [
         {
-          title: '排名',
+          title: '分公司',
           dataIndex: 'ranking',
           width: 75,
         },
         {
-          title: '指标名称',
+          title: '订单量',
           dataIndex: 'classify',
           width: 70,
         },
         {
-          title: '7月份',
+          title: '订单金额',
           dataIndex: 'month',
           width: 65,
         },
         {
-          title: '月同比',
+          title: '客单价',
           dataIndex: 'growth',
           width: 65,
         },
         {
-          title: '年平均',
+          title: '目标金额',
           dataIndex: 'aveYear',
           width: 70,
         },
         {
-          title: '目标值',
+          title: '目标完成率',
           dataIndex: 'target',
           width: 60,
         },
       ],
     },
     rightBottom: {
-      headerText: '物流总览',
+      headerText: '客户销量TOP50',
       type: 'table',
       columns: [
         {
-          title: '监控节点',
+          title: '客户名称',
           dataIndex: 'nodes',
           width: 75,
         },
         {
-          title: '总行项数',
+          title: '订单量',
           dataIndex: 'amount',
           width: 70,
         },
         {
-          title: '告警行项',
+          title: '订单金额',
           dataIndex: 'alarmAmount',
           width: 65,
         },
         {
-          title: '异常行项',
+          title: '客单价',
           dataIndex: 'abnormalAmount',
           width: 65,
         },
         {
-          title: '正常行项',
+          title: '签约金额',
           dataIndex: 'normalAmount',
           width: 70,
         },
         {
-          title: '异常率',
+          title: '达成率',
           dataIndex: 'untreatedAbnormalFee',
           width: 60,
         },
@@ -236,72 +236,72 @@ export const nodeConfig = {
       type: 'table',
     },
     rightTop: {
-      headerText: '分公司下单量排行榜',
+      headerText: '分公司销售排行榜',
       type: 'table',
       columns: [
         {
-          title: '排名',
+          title: '分公司',
           dataIndex: 'ranking',
           width: 75,
         },
         {
-          title: '指标名称',
+          title: '订单量',
           dataIndex: 'classify',
           width: 70,
         },
         {
-          title: '7月份',
+          title: '订单金额',
           dataIndex: 'month',
           width: 65,
         },
         {
-          title: '月同比',
+          title: '客单价',
           dataIndex: 'growth',
           width: 65,
         },
         {
-          title: '年平均',
+          title: '目标金额',
           dataIndex: 'aveYear',
           width: 70,
         },
         {
-          title: '目标值',
+          title: '目标完成率',
           dataIndex: 'target',
           width: 60,
         },
       ],
     },
     rightBottom: {
-      headerText: '核心客户下单数据',
+      headerText: '客户销量TOP50',
       type: 'table',
       columns: [
         {
-          title: '监控节点',
+          title: '客户名称',
           dataIndex: 'nodes',
           width: 75,
         },
         {
-          title: '总行项数',
+          title: '订单量',
           dataIndex: 'amount',
           width: 70,
         },
         {
-          title: '告警行项',
+          title: '订单金额',
           dataIndex: 'alarmAmount',
           width: 65,
         },
         {
-          title: '异常行项',
+          title: '客单价',
           dataIndex: 'abnormalAmount',
           width: 65,
         },
         {
-          title: '正常行项',
+          title: '签约金额',
           dataIndex: 'normalAmount',
           width: 70,
         },
         {
-          title: '异常率',
+          title: '达成率',
           dataIndex: 'untreatedAbnormalFee',
           width: 60,
         },
@@ -1023,7 +1023,7 @@ export const nodeConfig = {
       type: 'line',
     },
     leftBottom: {
-      headerText: '采购执行员下单排行榜',
+      headerText: '采购执行下单排行榜',
       type: 'table',
       columns: [
         {
@@ -1136,11 +1136,11 @@ export const nodeConfig = {
       type: 'line',
     },
     leftBottom: {
-      headerText: '供应商拒单分析',
+      headerText: '品类接单排行榜',
       type: 'table',
       columns: [
         {
-          title: '监控节点',
+          title: '品类名称',
           dataIndex: 'nodes',
           width: 75,
         },
@@ -1150,7 +1150,7 @@ export const nodeConfig = {
           width: 70,
         },
         {
-          title: '告警行项',
+          title: '待接单数',
           dataIndex: 'alarmAmount',
           width: 65,
         },
@@ -1160,7 +1160,7 @@ export const nodeConfig = {
           width: 65,
         },
         {
-          title: '正常行项',
+          title: '接单时效(h)',
           dataIndex: 'normalAmount',
           width: 70,
         },
@@ -1183,17 +1183,17 @@ export const nodeConfig = {
         {
           title: '供应商名称',
           dataIndex: 'ranking',
-          width: 75,
+          width: 155,
         },
         {
           title: '总采购单数',
-          dataIndex: 'classify',
-          width: 70,
+          dataIndex: 'kpi',
+          width: 65,
         },
         {
           title: '待接单数',
           dataIndex: 'month',
-          width: 65,
+          width: 58,
         },
         {
           title: '接单时效',
@@ -1201,19 +1201,19 @@ export const nodeConfig = {
           width: 65,
         },
         {
-          title: '超时未接单数',
+          title: '超时订单数',
           dataIndex: 'aveYear',
-          width: 70,
+          width: 65,
         },
         {
           title: '超时率',
           dataIndex: 'target',
-          width: 60,
+          width: 55,
         },
       ],
     },
     rightBottom: {
-      headerText: '品类接单排行榜',
+      headerText: '供应商拒单分析',
       type: 'table',
       columns: [
         {
@@ -1306,17 +1306,17 @@ export const nodeConfig = {
         {
           title: '供应商名称',
           dataIndex: 'ranking',
-          width: 75,
+          width: 155,
         },
         {
           title: '总发货行数',
           dataIndex: 'classify',
-          width: 70,
+          width: 65,
         },
         {
-          title: '待发货行数',
+          title: '待发货数',
           dataIndex: 'month',
-          width: 65,
+          width: 58,
         },
         {
           title: '发货时效',
@@ -1326,12 +1326,12 @@ export const nodeConfig = {
         {
           title: '超时行项',
           dataIndex: 'aveYear',
-          width: 70,
+          width: 65,
         },
         {
           title: '超时率',
           dataIndex: 'target',
-          width: 60,
+          width: 55,
         },
       ],
     },
